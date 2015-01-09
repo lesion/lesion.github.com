@@ -420,7 +420,7 @@ article .post-content {
 }
 article .post-content-index {
   padding: 0 20px 0 77px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   position: relative;
 }
 @media screen and (max-width: 768px) {
@@ -429,8 +429,8 @@ article .post-content-index {
     margin-bottom: 20px;
   }
 }
-article .post-content-index header {
-  margin-bottom: 20px;
+article .post-content-index footer {
+  text-align: right;
 }
 @media screen and (max-width: 768px) {
   article .post-content-index header {
@@ -460,8 +460,8 @@ article .post-content-index header .icon:before {
   text-align: center;
 }
 article .post-content-index header .title {
-  font-size: px;
-  font-weight: 300;
+  font-size: 1.5em;
+  font-weight: normal;
 }
 article .post-content-index header .title a {
   color: #009cdc;
@@ -628,6 +628,7 @@ article .entry ol,
 article .entry dl {
   margin-left: 30px;
   margin-top: 8px;
+  margin-bottom: 8px;
 }
 article .entry ul ul,
 article .entry ol ul,
@@ -703,10 +704,8 @@ article .entry .pullquote {
   font-size: 1.5em;
 }
 article footer {
-  padding-bottom: 30px;
-  margin-bottom: 40px;
-  border-bottom: 2px solid #eee;
-  margin-top: 25px;
+  border-bottom: 1px solid #eee;
+  margin-top: 15px;
   color: #999;
   font-size: 0.9em;
   position: relative;

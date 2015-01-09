@@ -5,16 +5,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>drummino | LowTech</title>
+  <title>Debugging Atmega328 projects with serial | LowTech</title>
   <meta name="author" content="lesion">
   
-  <meta name="description" content="This is an atmega328 based standard MIDI device using capacitive touch sensors!!
-I’m not explaining how the things work here, take a look at the code!">
+  <meta name="description" content="The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.
+Brian Kernighan &quot;Unix for Beginners&quot; (19">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="drummino"/>
+  <meta property="og:title" content="Debugging Atmega328 projects with serial"/>
   <meta property="og:site_name" content="LowTech"/>
 
   
@@ -79,19 +79,19 @@ body{ -webkit-animation: bugfix infinite 1s; }
       <div class="padding">
     		
           
-            <h1 class="icon-electron">drummino</h1>
+            <h1 class="icon-electron">Debugging Atmega328 projects with serial</h1>
           
           <ul>
             <li>
-              <time datetime="2015-01-06T11:04:41.000Z">6 Jan 2015</time> / 
-              <span>atmega328 based standard MIDI device with capacitive sensors!
+              <time datetime="2015-01-09T17:46:30.000Z">9 Jan 2015</time> / 
+              <span>an easy & dirty way to debug with Serial.print with an Atmega328
               </span>
             </li>
           </ul>
         <span class='tags alignright'>
   
   <div class="icon-tag">
-    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/midi/">midi</a>
+    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/dev/">dev</a>, <a href="/tags/debug/">debug</a>
   </div>
 
 </span>
@@ -109,12 +109,33 @@ body{ -webkit-animation: bugfix infinite 1s; }
       
         
           <div class="entry">
-            <p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
-<p>I’m not explaining how the things work here, take a look at the <a href="https://github.com/lesion/drummino" target="_blank" rel="external">code</a>!</p>
-<p>This is the result using <a href="http://www.hydrogen-music.org/hcms/" target="_blank" rel="external">hydrogen</a>:</p>
-<p align="center">
-<iframe src="//player.vimeo.com/video/108494278" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
-</p>
+            <blockquote>
+
+<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
+<footer><strong>Brian Kernighan </strong><cite><a href="http://en.wikiquote.org/wiki/Brian_Kernighan" target="_blank" rel="external">"Unix for Beginners" (1979)</a></cite></footer></blockquote>
+
+
+<p>I know, using Serial.print it’s a dirty way to debug source code,
+but hey, it’s cheap!!
+Usually we need debugging only while we are developing the project
+or to experiment something and we don’t need the power of a <a href="http://store.atmel.com/CBC.aspx?q=c:100112" target="_blank" rel="external">real debugger</a>.</p>
+<p>In small hardware projects we usually need to know value of an input, a temperature, the humidity,
+the remaining battery charge or the value of a capacitive sensor….</p>
+<p>That’s what I needed for <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> and that’s why I wrote <a href="http://github.com/lesion/plottino" target="_blank" rel="external">plottino</a>.</p>
+<p>If we don’t want to use an entire arduino for our final project the problem is now,
+how we can look at Serial data coming from an atmega328 in a computer without the serial port?</p>
+<p>My solution is to use another arduino with its FT232R usb2serial converter:</p>
+<p><img src="/images/serial debug.svg" style="width:100%;"></p>
+<p>As you see we only need to connect the TX pin!</p>
+<p>Note that the atmega328 on the arduino is <strong>not</strong> needed as it may interfere with the serial port!
+Here we only use arduino as usb2serial converter.</p>
+<p>Connecting the arduino to usb port of your computer would enable serial data
+coming from the atmega directly to your emulated serial device (/dev/ttyACM?).</p>
+<p>There isn’t neither a crystal oscillator with two 22uF caps here, because I’m
+using the internal oscillator for the <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> project,
+so please take care that with the internal oscillator the Serial baudrate has to be slow!</p>
+<p>You can try to reach 57600 bps but stay at 9600 bps is preferable.</p>
+<p>If you need more speed, you can try to <a href="http://www.atmel.com/Images/doc8002.pdf" target="_blank" rel="external">calibrate the internal oscillator</a>.</p>
 
           </div>
         
@@ -130,7 +151,7 @@ body{ -webkit-animation: bugfix infinite 1s; }
           
   
   <div class="icon-tag">
-    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/midi/">midi</a>
+    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/dev/">dev</a>, <a href="/tags/debug/">debug</a>
   </div>
 
 
@@ -163,16 +184,16 @@ body{ -webkit-animation: bugfix infinite 1s; }
 <nav class="article-nav clearfix">
  
  <div class="article-prev" >
- <a href="/2015/01/06/embed-pdf-reader-in-webapp/" title="how to embed a pdf reader in webapp">
+ <a href="/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/" title="Enjoy Winter! Costruzione stufa ad accumulo">
   <span>
-  &lt;&nbsp; how to embed a pdf reader in webapp</span>
+  &lt;&nbsp; Enjoy Winter! Costruzione stufa ad accumulo</span>
 </a>
 </div>
 
 
 <div class="article-next">
-<a href="/2015/01/06/debugging-atmega328-project-with-serial/"  title="Debugging Atmega328 projects with serial">
- <span>Debugging Atmega328 projects with serial
+<a href="/2015/01/09/drummino/"  title="drummino">
+ <span>drummino
  &gt; </span> 
 </a>
 </div>
@@ -212,20 +233,20 @@ body{ -webkit-animation: bugfix infinite 1s; }
         <a href="/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/">Enjoy Winter! Costruzione stufa ad accumulo</a>
       </li>
     
+      <li class="icon-electron">
+        <a href="/2015/01/09/debugging-atmega328-project-with-serial/">Debugging Atmega328 projects with serial</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/09/drummino/">drummino</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/09/atmega_prj/">Start with a new Atmega328 project</a>
+      </li>
+    
       <li class="icon-code">
         <a href="/2015/01/06/embed-pdf-reader-in-webapp/">how to embed a pdf reader in webapp</a>
-      </li>
-    
-      <li class="icon-electron">
-        <a href="/2015/01/06/drummino/">drummino</a>
-      </li>
-    
-      <li class="icon-electron">
-        <a href="/2015/01/06/debugging-atmega328-project-with-serial/">Debugging Atmega328 projects with serial</a>
-      </li>
-    
-      <li class="icon-electron">
-        <a href="/2015/01/06/atmega_prj/">Start with a new Atmega328 project</a>
       </li>
     
   </ul>

@@ -5,16 +5,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Debugging Atmega328 projects with serial | LowTech</title>
+  <title>Start with a new Atmega328 project | LowTech</title>
   <meta name="author" content="lesion">
   
-  <meta name="description" content="The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.
-Brian Kernighan &quot;Unix for Beginners&quot; (19">
+  <meta name="description" content="Every time I need to create something with the famous atmega328p
+(the chip on every arduino), I’m doing those follow steps I decided to share.
+Let’s s">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Debugging Atmega328 projects with serial"/>
+  <meta property="og:title" content="Start with a new Atmega328 project"/>
   <meta property="og:site_name" content="LowTech"/>
 
   
@@ -79,19 +80,19 @@ body{ -webkit-animation: bugfix infinite 1s; }
       <div class="padding">
     		
           
-            <h1 class="icon-electron">Debugging Atmega328 projects with serial</h1>
+            <h1 class="icon-electron">Start with a new Atmega328 project</h1>
           
           <ul>
             <li>
-              <time datetime="2015-01-06T11:04:34.000Z">6 Jan 2015</time> / 
-              <span>an easy & dirty way to debug with Serial.print with an Atmega328
+              <time datetime="2015-01-09T17:46:30.000Z">9 Jan 2015</time> / 
+              <span>a generic programmable atmega328 project
               </span>
             </li>
           </ul>
         <span class='tags alignright'>
   
   <div class="icon-tag">
-    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/dev/">dev</a>, <a href="/tags/debug/">debug</a>
+    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/dev/">dev</a>, <a href="/tags/diy/">diy</a>
   </div>
 
 </span>
@@ -109,33 +110,54 @@ body{ -webkit-animation: bugfix infinite 1s; }
       
         
           <div class="entry">
-            <blockquote>
+            <p>Every time I need to create something with the famous <a href="http://en.wikipedia.org/wiki/ATmega328" target="_blank" rel="external">atmega328p</a>
+(the chip on every arduino), I’m doing those follow steps I decided to share.</p>
+<h2 id="Let’s_start">Let’s start</h2>
+<p>To prepare a board for a generic atmega328 project, we need:</p>
+<ul>
+<li>atmega328</li>
+<li>a board</li>
+<li>16 MHz clock crystal</li>
+<li>2 22 pF capacitors</li>
+</ul>
+<p><img src="/images/umidino_bare.svg" alt="umidino_bare"></p>
+<p>This could seems a very minimal installation but the atmega328 could also run
+without an external oscillator, but it’s really better to
+have one (we avoid a lot of issues while programming and debugging).
+I’ll show you some project that doesn’t need the crystal in next article.</p>
+<p>Capacitors are not mandatory neither (with crystal, without crystal there’s not
+need at all for them) but better to follow specifications.
+I’ve some project running without them but only the crystal without any issues.</p>
+<p>Ok…
+The pins we are going to wire the oscillator are the <strong>9</strong> and <strong>10</strong>, while
+caps are between <strong>GND</strong> (pin <strong>8</strong>) and above pins.
+Pretty easy no?</p>
+<p>I’m using the common <a href="http://www.fischl.de/usbasp/" target="_blank" rel="external">usbasp</a> programmer
+to talk with the atmega, you can find it on ebay for 4$ (or less).</p>
+<p>Beginning to play is easy as wiring our usbasp programmer to the chip.
+The pinout for wiring is easy to found on the web, my usbasp
+as the ISP10 pin socket so let’s prepare the female part for
+convenience on our board with the information we found:</p>
+<p><img src="/images/usbaspPinout.jpg" alt="usbaspPinout"></p>
+<p>Looking at <a href="http://arduino.cc/en/Hacking/PinMapping168" target="_blank" rel="external">atmega pinmapping</a>
+we easily found how to connect the ISP header to our atmega:</p>
+<p><img src="/images/umidino_isp10.svg" alt="ISP10 to Atmega"></p>
+<h2 id="Program_atmega328_using_usbasp_programmer">Program atmega328 using usbasp programmer</h2>
+<p>We are going to use the Arduino IDE to talk with t he chip, to achieve
+that we need to explain the IDE how to use the usbasp
+instead of using the default arduino programmer.</p>
+<p>In order to do this, open Arduino IDE and select <strong>USBasp</strong> in
+<strong>Tools &gt; Programmer</strong> menu. If it’s not present, you need to add
+follow lines in <strong>programmers.txt</strong> in your sketchbook/hardware folder
+(close Arduino IDE before doing this):</p>
+<figure class="highlight"><pre><div class="line">usbasp.<span class="variable">name=</span>USBasp</div><div class="line">usbasp.<span class="variable">communication=</span>usb</div><div class="line">usbasp.<span class="variable">protocol=</span>usbasp</div></pre></figure>
 
-<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
-<footer><strong>Brian Kernighan </strong><cite><a href="http://en.wikiquote.org/wiki/Brian_Kernighan" target="_blank" rel="external">"Unix for Beginners" (1979)</a></cite></footer></blockquote>
-
-
-<p>I know, using Serial.print it’s a dirty way to debug source code,
-but hey, it’s cheap!!
-Usually we need debugging only while we are developing the project
-or to experiment something and we don’t need the power of a <a href="http://store.atmel.com/CBC.aspx?q=c:100112" target="_blank" rel="external">real debugger</a>.</p>
-<p>In small hardware projects we usually need to know value of an input, a temperature, the humidity,
-the remaining battery charge or the value of a capacitive sensor….</p>
-<p>That’s what I needed for <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> and that’s why I wrote <a href="http://github.com/lesion/plottino" target="_blank" rel="external">plottino</a>.</p>
-<p>If we don’t want to use an entire arduino for our final project the problem is now,
-how we can look at Serial data coming from an atmega328 in a computer without the serial port?</p>
-<p>My solution is to use another arduino with its FT232R usb2serial converter:</p>
-<p><img src="/images/serial debug.svg" style="width:100%;"></p>
-<p>As you see we only need to connect the TX pin!</p>
-<p>Note that the atmega328 on the arduino is <strong>not</strong> needed as it may interfere with the serial port!
-Here we only use arduino as usb2serial converter.</p>
-<p>Connecting the arduino to usb port of your computer would enable serial data
-coming from the atmega directly to your emulated serial device (/dev/ttyACM?).</p>
-<p>There isn’t neither a crystal oscillator with two 22uF caps here, because I’m
-using the internal oscillator for the <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> project,
-so please take care that with the internal oscillator the Serial baudrate has to be slow!</p>
-<p>You can try to reach 57600 bps but stay at 9600 bps is preferable.</p>
-<p>If you need more speed, you can try to <a href="http://www.atmel.com/Images/doc8002.pdf" target="_blank" rel="external">calibrate the internal oscillator</a>.</p>
+<p>Let’s test our setup with the blink sketch (File &gt; Example &gt; Basic &gt; Blink)
+uploading the code through the usbasp programmer (File &gt; Upload with programmer)
+or pressing Shift and click on Upload icon!
+Do not forget to add a led on correct pin:</p>
+<p><img src="/images/atmega_blink_test.svg" alt="atmega_blink_test"></p>
+<p>After upload you should see the led blink once a second.</p>
 
           </div>
         
@@ -151,7 +173,7 @@ so please take care that with the internal oscillator the Serial baudrate has to
           
   
   <div class="icon-tag">
-    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/dev/">dev</a>, <a href="/tags/debug/">debug</a>
+    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/dev/">dev</a>, <a href="/tags/diy/">diy</a>
   </div>
 
 
@@ -184,7 +206,7 @@ so please take care that with the internal oscillator the Serial baudrate has to
 <nav class="article-nav clearfix">
  
  <div class="article-prev" >
- <a href="/2015/01/06/drummino/" title="drummino">
+ <a href="/2015/01/09/drummino/" title="drummino">
   <span>
   &lt;&nbsp; drummino</span>
 </a>
@@ -192,8 +214,8 @@ so please take care that with the internal oscillator the Serial baudrate has to
 
 
 <div class="article-next">
-<a href="/2015/01/06/atmega_prj/"  title="Start with a new Atmega328 project">
- <span>Start with a new Atmega328 project
+<a href="/2015/01/06/embed-pdf-reader-in-webapp/"  title="how to embed a pdf reader in webapp">
+ <span>how to embed a pdf reader in webapp
  &gt; </span> 
 </a>
 </div>
@@ -233,20 +255,20 @@ so please take care that with the internal oscillator the Serial baudrate has to
         <a href="/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/">Enjoy Winter! Costruzione stufa ad accumulo</a>
       </li>
     
+      <li class="icon-electron">
+        <a href="/2015/01/09/debugging-atmega328-project-with-serial/">Debugging Atmega328 projects with serial</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/09/drummino/">drummino</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/09/atmega_prj/">Start with a new Atmega328 project</a>
+      </li>
+    
       <li class="icon-code">
         <a href="/2015/01/06/embed-pdf-reader-in-webapp/">how to embed a pdf reader in webapp</a>
-      </li>
-    
-      <li class="icon-electron">
-        <a href="/2015/01/06/drummino/">drummino</a>
-      </li>
-    
-      <li class="icon-electron">
-        <a href="/2015/01/06/debugging-atmega328-project-with-serial/">Debugging Atmega328 projects with serial</a>
-      </li>
-    
-      <li class="icon-electron">
-        <a href="/2015/01/06/atmega_prj/">Start with a new Atmega328 project</a>
       </li>
     
   </ul>
