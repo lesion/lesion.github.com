@@ -1,0 +1,401 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  
+  <title>how to embed a pdf reader in webapp | LowTech</title>
+  <meta name="author" content="lesion">
+  
+  <meta name="description" content="For an app I’m working on, we need a new feature: to show some pdf stored
+server side.
+After some research I found three different solutions to explor">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="how to embed a pdf reader in webapp"/>
+  <meta property="og:site_name" content="LowTech"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <meta http-equiv="Content-Language" content="en"/>
+  
+
+  <link href="/img/favicon.png" rel="icon">
+  
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple-icon.png">
+    
+
+  <link rel="alternate" href="/atom.xml" title="LowTech" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+  <style type="text/css">
+  /* Tim Pietrusky advanced checkbox hack (Android <= 4.1.2) */
+body{ -webkit-animation: bugfix infinite 1s; }
+@-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
+
+  
+
+  
+    article .post-content-index .entry{max-height: 550px; overflow:hidden;}
+  
+</style>
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-1.11.1.min.js"></script>
+
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="padding">
+	<nav id="main-nav" class="alignright">
+		<input type="checkbox" id="toggle" />
+		<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick><i class="fa fa-bars"></i></label>
+	  <ul class="menu">
+	    
+	      <li><a class='icon-Home' href="/">Home</a></li>
+	    
+	      <li><a class='icon-Feed' href="atom.xml">Feed</a></li>
+	    
+	      <li><a class='icon-Github' href="http://github.com/lesion">Github</a></li>
+	    
+	    
+	  </ul>
+	</nav>
+	<div class="clearfix"></div>
+</div>
+</header>
+  <div id="page-heading-wrap">
+  	<div class="inner">
+      <div class="padding">
+    		
+          
+            <h1 class="icon-code">how to embed a pdf reader in webapp</h1>
+          
+          <ul>
+            <li>
+              <time datetime="2015-01-06T12:31:00.000Z">6 Jan 2015</time> / 
+              <span>using a cordova plugin? pdf.js? no...
+              </span>
+            </li>
+          </ul>
+        <span class='tags alignright'>
+  
+  <div class="icon-tag">
+    <a href="/tags/dev/">dev</a>, <a href="/tags/app/">app</a>, <a href="/tags/pdf/">pdf</a>
+  </div>
+
+</span>
+        
+      </div>
+  	</div>
+  </div>
+
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper" class="padding"><article class="post">
+  
+  
+    <div class="post-content">
+  
+      
+        
+          <div class="entry">
+            <p>For an app I’m working on, we need a new feature: <strong>to show some pdf</strong> stored
+server side.</p>
+<p>After some research I found three different solutions to explore:</p>
+<ol>
+<li>using a Cordova plugin like <a href="https://github.com/vfr/Reader" target="_blank" rel="external">Reader</a></li>
+<li>trying with the promising <a href="http://mozilla.github.io/pdf.js/" target="_blank" rel="external">PDF.js</a>, a solution completely based on js to parse/render PDFs client side.</li>
+<li>parse PDF on server side, render it as images and let the client manage an easy jpg.</li>
+</ol>
+<h3 id="Using_Cordova_/_native_code">Using Cordova / native code</h3>
+<p>This is of course the cleaner solution and probably the less error-prone one,
+but as I’m using <a href="https://software.intel.com/it-it/html5/tools" target="_blank" rel="external">Intel XDK</a> (because
+afaik it’s the only solution to develop iOS application with Linux) and you can’t
+debug Cordova plugin in real-time with it, it’s a pain to upload and build the app everytime before
+trying to play with it, we are not in ninethees anymore when <a href="http://xkcd.com/303/" target="_blank" rel="external">compile time</a> was normal.</p>
+<h3 id="PDF-js">PDF.js</h3>
+<p>The first time I looked at this, I thought that this would be the solution I was going to choose.
+The Mozilla team has done a great job here and is stable enougth that they included the reader 
+in Firefox, as you can see using a recent release of Firefox and watching the 
+<a href="http://mozilla.github.io/pdf.js/web/viewer.html" target="_blank" rel="external">demo</a> and the <a href="http://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf" target="_blank" rel="external">pdf</a> used for the demo alone (the interface it’s the same and the console shows same logs).</p>
+<p>The only issue with PDF.js is speed, as with the big PDFs I’m going to work with, the smoothness 
+of application it’s a bit downgraded.</p>
+<h3 id="Choosed_solution_/_server_side_conversion">Choosed solution / server side conversion</h3>
+<p>There are lot of solutions to convert PDF into images and also some script to convert
+a PDF directly into HTML. 
+My solution is splitted into:</p>
+<h4 id="Convert_PDF_into_images:">Convert PDF into images:</h4>
+<figure class="highlight bash"><pre><div class="line"><span class="shebang">#! /bin/bash</span></div><div class="line"><span class="comment"># Mass convert PDF to png - massPDF2PNG.sh</span></div><div class="line"></div><div class="line"><span class="comment"># settings</span></div><div class="line">PDF_PATH=pdf</div><div class="line">PNG_PATH=images</div><div class="line"></div><div class="line"><span class="comment"># check if destination path exists</span></div><div class="line"><span class="keyword">if</span> [ ! <span class="operator">-d</span> <span class="variable">$PNG_PATH</span> ]; <span class="keyword">then</span></div><div class="line">  mkdir <span class="variable">$PNG_PATH</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># convert command / install ImageMagick to use this</span></div><div class="line">convert=<span class="string">"convert -density 300 "</span></div><div class="line"></div><div class="line"><span class="comment"># for each pdf found on selected path</span></div><div class="line"><span class="keyword">for</span> pdf <span class="keyword">in</span> `ls <span class="variable">$PDF_PATH</span>/*.pdf`; <span class="keyword">do</span></div><div class="line">  name=$(basename <span class="variable">$pdf</span> .pdf)</div><div class="line">  <span class="comment"># check if this pdf is converted yet</span></div><div class="line">  ls <span class="variable">$PNG_PATH</span>/<span class="variable">$name</span>*.png <span class="number">2</span>&gt; /dev/null &gt; /dev/null</div><div class="line">  <span class="keyword">if</span> [ $? <span class="operator">-eq</span> <span class="number">0</span> ]; <span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$pdf</span> converted yet! "</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    <span class="comment"># convert it and put in destination path</span></div><div class="line">    <span class="variable">$convert</span> <span class="variable">$pdf</span> <span class="variable">$PNG_PATH</span>/<span class="variable">$name</span>.png</div><div class="line">    <span class="keyword">if</span> [ $? <span class="operator">-ne</span> <span class="number">0</span> ]; <span class="keyword">then</span></div><div class="line">      <span class="built_in">echo</span> <span class="string">"Error converting <span class="variable">$pdf</span>"</span></div><div class="line">      <span class="keyword">exit</span> <span class="number">1</span></div><div class="line">    <span class="keyword">fi</span></div><div class="line">  <span class="keyword">fi</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="keyword">exit</span> <span class="number">0</span></div></pre></figure>
+
+
+<p>This script has to be executed server-side for each changes on pdf
+directory! </p>
+<p>To achieve this in linux we can use <a href="http://en.wikipedia.org/wiki/Inotify" target="_blank" rel="external">inotify</a>, using
+a little <a href="http://stackoverflow.com/a/20381373" target="_blank" rel="external">stackoverflow script</a>.</p>
+<figure class="highlight"><pre><div class="line"><span class="shebang">#! /bin/bash</span></div><div class="line"><span class="comment"># notify_changes.sh</span></div><div class="line">DIRECTORY_TO_OBSERVE=<span class="string">"pdf"</span>     </div><div class="line">function block_<span class="keyword">for</span>_change {</div><div class="line">  inotifywait \</div><div class="line">    <span class="operator">-e</span> modify,move,create,delete \</div><div class="line">    <span class="variable">$DIRECTORY_TO_OBSERVE</span></div><div class="line">}</div><div class="line">BUILD_SCRIPT=massPDF2PNG.sh   </div><div class="line">function build {</div><div class="line">  bash <span class="variable">$BUILD_SCRIPT</span></div><div class="line">}</div><div class="line">build</div><div class="line"><span class="keyword">while</span> block_<span class="keyword">for</span>_change; <span class="keyword">do</span></div><div class="line">  build</div><div class="line"><span class="keyword">done</span></div></pre></figure>
+
+
+<p>So after installing inotify-tools we can run ./notify_changes.sh
+and start copy PDFs into pdf/ directory.
+Converting PDFs into images is slow but after a while you’ll found your
+images (one per page) inside proper directory.</p>
+<p>Last thing, we need to prepare an HTML page to host our images and put some
+pretty css to “emulate” a book style pages:</p>
+<figure class="highlight"><pre><div class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span><span class="tag">&lt;/<span class="title">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">media</span>=<span class="value">"all"</span>&gt;</span><span class="css"></span></div><div class="line">      <span class="tag">html</span>, <span class="tag">body</span> <span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#9E9E9E</span></span></span>;</div><div class="line"></div><div class="line">      <span class="rule">}</span></div><div class="line">      <span class="tag">img</span> <span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#fff</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">box-sizing</span>:<span class="value"> border-box</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">2px</span> solid <span class="hexcolor">#444</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">0</span></span></span>;</div><div class="line">      <span class="rule">}</span></div><div class="line">    <span class="tag">&lt;/<span class="title">style</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">""</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">src</span>=<span class="value">"compressed.tracemonkey-pldi-09-0.png"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">""</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">src</span>=<span class="value">"compressed.tracemonkey-pldi-09-1.png"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">""</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">src</span>=<span class="value">"compressed.tracemonkey-pldi-09-2.png"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">""</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">src</span>=<span class="value">"compressed.tracemonkey-pldi-09-3.png"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div></pre></figure>
+
+<p>And <a href="/resources/embed_pdf_test.html">here</a> a little demo!</p>
+
+          </div>
+        
+      <footer>
+        
+          
+  
+  <div class="icon-category">
+    <a href="/categories/code/">code</a>
+  </div>
+
+
+          
+  
+  <div class="icon-tag">
+    <a href="/tags/dev/">dev</a>, <a href="/tags/app/">app</a>, <a href="/tags/pdf/">pdf</a>
+  </div>
+
+
+          <div class="share">
+  
+
+    
+
+    
+      <div class="g-plusone"></div>
+
+      <script type="text/javascript">
+        window.___gcfg = {lang: 'en-GB'};
+
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    
+
+    
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="halfer53">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    
+  
+</div>
+          
+<nav class="article-nav clearfix">
+ 
+
+<div class="article-next">
+<a href="/2015/01/06/enjoy-winter-costruzione-stufa-ad-accumulo/"  title="Enjoy Winter! Costruzione stufa ad accumulo">
+ <span>Enjoy Winter! Costruzione stufa ad accumulo
+ &gt; </span> 
+</a>
+</div>
+
+</nav>
+
+
+        
+        <div class="clearfix"></div>
+      </footer>
+    </div>
+</article>
+
+
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+
+  <div id="disqus_thread"></div>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright"><div class="padding">
+	
+    
+	  
+<div class="widget recent-post">
+  <h3 class="title icon-post">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li class="icon-code">
+        <a href="/2015/01/06/embed-pdf-reader-in-webapp/">how to embed a pdf reader in webapp</a>
+      </li>
+    
+      <li class="icon-real-life">
+        <a href="/2015/01/06/enjoy-winter-costruzione-stufa-ad-accumulo/">Enjoy Winter! Costruzione stufa ad accumulo</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/06/drummino/">drummino</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/06/debugging-atmega328-project-with-serial/">Debugging Atmega328 projects with serial</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/06/atmega_prj/">Start with a new Atmega328 project</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+    
+	
+    
+	  
+<div class="widget category">
+  <h3 class="title icon-category">Categories</h3>
+  <ul class="entry">
+  
+    <li><a class='icon-code' href="/categories/code/">code</a><small>1</small></li>
+  
+    <li><a class='icon-electron' href="/categories/electron/">electron</a><small>3</small></li>
+  
+    <li><a class='icon-libri' href="/categories/libri/">libri</a><small>1</small></li>
+  
+    <li><a class='icon-real-life' href="/categories/real-life/">real-life</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+    
+	
+    
+	  
+<div class="widget tag">
+  <h3 class="title icon-tag">Tags</h3>
+  
+    <a href="/tags/app/">app<small>1</small></a>
+  
+    <a href="/tags/arduino/">arduino<small>3</small></a>
+  
+    <a href="/tags/atmega/">atmega<small>3</small></a>
+  
+    <a href="/tags/concrete/">concrete<small>1</small></a>
+  
+    <a href="/tags/debug/">debug<small>1</small></a>
+  
+    <a href="/tags/dev/">dev<small>3</small></a>
+  
+    <a href="/tags/diy/">diy<small>2</small></a>
+  
+    <a href="/tags/ita/">ita<small>1</small></a>
+  
+    <a href="/tags/midi/">midi<small>1</small></a>
+  
+    <a href="/tags/pdf/">pdf<small>1</small></a>
+  
+    <a href="/tags/scifi/">scifi<small>1</small></a>
+  
+</div>
+
+
+    
+	
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="padding">
+	<div class="alignleft">
+	  
+	  &copy; 2015 lesion
+	  
+	  powerd by <a href="http://hexo.io/" target="_blank">hexo</a>
+	  and Theme by <a href="https://github.com/halfer53/metro-light" target="_blank">metro-light</a>
+	</div>
+
+	<div class="alignright">
+		
+		
+		
+			<a href="https://twitter.com/johnnydev" target="_blank" title="lesion Twitter"><i class="fa fa-twitter-square"></i></a>	
+		
+		
+		
+		
+		
+	</div>
+
+	<div class="clearfix"></div>
+</div>
+
+<div class="scroll-top"><i class="icon-hammer"></i></div>
+</footer>
+  
+
+		<script type="text/javascript">
+		var disqus_shortname = 'lowtech';
+
+		        (function() {
+		            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		        })();
+		</script>
+
+		<script type="text/javascript">
+		var disqus_shortname = 'lowtech'; 
+
+		(function () {
+		var s = document.createElement('script'); s.async = true;
+		s.type = 'text/javascript';
+		s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		}());
+		</script>
+
+  
+
+
+<!-- <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script> -->
+
+
+
+<script type="text/javascript">
+$(window).scroll(function() {
+
+    if($(this).scrollTop() > 400) {
+        $('.scroll-top').fadeIn(200);
+    } else {
+        $('.scroll-top').fadeOut(200);
+    }
+});
+
+$('.scroll-top').bind('click', function(e) {
+    e.preventDefault();
+    $('body,html').animate({scrollTop:0},200);
+});
+</script>
+
+
+</body>
+</html>

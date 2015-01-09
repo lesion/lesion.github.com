@@ -1,0 +1,389 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  
+  <title>Debugging Atmega328 projects with serial | LowTech</title>
+  <meta name="author" content="lesion">
+  
+  <meta name="description" content="The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.
+Brian Kernighan &quot;Unix for Beginners&quot; (19">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Debugging Atmega328 projects with serial"/>
+  <meta property="og:site_name" content="LowTech"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <meta http-equiv="Content-Language" content="en"/>
+  
+
+  <link href="/img/favicon.png" rel="icon">
+  
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple-icon.png">
+    
+
+  <link rel="alternate" href="/atom.xml" title="LowTech" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+  <style type="text/css">
+  /* Tim Pietrusky advanced checkbox hack (Android <= 4.1.2) */
+body{ -webkit-animation: bugfix infinite 1s; }
+@-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
+
+  
+
+  
+    article .post-content-index .entry{max-height: 550px; overflow:hidden;}
+  
+</style>
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-1.11.1.min.js"></script>
+
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="padding">
+	<nav id="main-nav" class="alignright">
+		<input type="checkbox" id="toggle" />
+		<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick><i class="fa fa-bars"></i></label>
+	  <ul class="menu">
+	    
+	      <li><a class='icon-Home' href="/">Home</a></li>
+	    
+	      <li><a class='icon-Feed' href="atom.xml">Feed</a></li>
+	    
+	      <li><a class='icon-Github' href="http://github.com/lesion">Github</a></li>
+	    
+	    
+	  </ul>
+	</nav>
+	<div class="clearfix"></div>
+</div>
+</header>
+  <div id="page-heading-wrap">
+  	<div class="inner">
+      <div class="padding">
+    		
+          
+            <h1 class="icon-electron">Debugging Atmega328 projects with serial</h1>
+          
+          <ul>
+            <li>
+              <time datetime="2015-01-06T11:04:34.000Z">6 Jan 2015</time> / 
+              <span>an easy & dirty way to debug with Serial.print with an Atmega328
+              </span>
+            </li>
+          </ul>
+        <span class='tags alignright'>
+  
+  <div class="icon-tag">
+    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/dev/">dev</a>, <a href="/tags/debug/">debug</a>
+  </div>
+
+</span>
+        
+      </div>
+  	</div>
+  </div>
+
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper" class="padding"><article class="post">
+  
+  
+    <div class="post-content">
+  
+      
+        
+          <div class="entry">
+            <blockquote>
+
+<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
+<footer><strong>Brian Kernighan </strong><cite><a href="http://en.wikiquote.org/wiki/Brian_Kernighan" target="_blank" rel="external">"Unix for Beginners" (1979)</a></cite></footer></blockquote>
+
+
+<p>I know, using Serial.print it’s a dirty way to debug source code,
+but hey, it’s cheap!!
+Usually we need debugging only while we are developing the project
+or to experiment something and we don’t need the power of a <a href="http://store.atmel.com/CBC.aspx?q=c:100112" target="_blank" rel="external">real debugger</a>.</p>
+<p>In small hardware projects we usually need to know value of an input, a temperature, the humidity,
+the remaining battery charge or the value of a capacitive sensor….</p>
+<p>That’s what I needed for <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> and that’s why I wrote <a href="http://github.com/lesion/plottino" target="_blank" rel="external">plottino</a>.</p>
+<p>If we don’t want to use an entire arduino for our final project the problem is now,
+how we can look at Serial data coming from an atmega328 in a computer without the serial port?</p>
+<p>My solution is to use another arduino with its FT232R usb2serial converter:</p>
+<p><img src="/images/serial debug.svg" style="width:100%;"></p>
+<p>As you see we only need to connect the TX pin!</p>
+<p>Note that the atmega328 on the arduino is <strong>not</strong> needed as it may interfere with the serial port!
+Here we only use arduino as usb2serial converter.</p>
+<p>Connecting the arduino to usb port of your computer would enable serial data
+coming from the atmega directly to your emulated serial device (/dev/ttyACM?).</p>
+<p>There isn’t neither a crystal oscillator with two 22uF caps here, because I’m
+using the internal oscillator for the <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> project,
+so please take care that with the internal oscillator the Serial baudrate has to be slow!</p>
+<p>You can try to reach 57600 bps but stay at 9600 bps is preferable.</p>
+<p>If you need more speed, you can try to <a href="http://www.atmel.com/Images/doc8002.pdf" target="_blank" rel="external">calibrate the internal oscillator</a>.</p>
+
+          </div>
+        
+      <footer>
+        
+          
+  
+  <div class="icon-category">
+    <a href="/categories/electron/">electron</a>
+  </div>
+
+
+          
+  
+  <div class="icon-tag">
+    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/dev/">dev</a>, <a href="/tags/debug/">debug</a>
+  </div>
+
+
+          <div class="share">
+  
+
+    
+
+    
+      <div class="g-plusone"></div>
+
+      <script type="text/javascript">
+        window.___gcfg = {lang: 'en-GB'};
+
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    
+
+    
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="halfer53">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    
+  
+</div>
+          
+<nav class="article-nav clearfix">
+ 
+ <div class="article-prev" >
+ <a href="/2015/01/06/drummino/" title="drummino">
+  <span>
+  &lt;&nbsp; drummino</span>
+</a>
+</div>
+
+
+<div class="article-next">
+<a href="/2015/01/06/atmega_prj/"  title="Start with a new Atmega328 project">
+ <span>Start with a new Atmega328 project
+ &gt; </span> 
+</a>
+</div>
+
+</nav>
+
+
+        
+        <div class="clearfix"></div>
+      </footer>
+    </div>
+</article>
+
+
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+
+  <div id="disqus_thread"></div>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright"><div class="padding">
+	
+    
+	  
+<div class="widget recent-post">
+  <h3 class="title icon-post">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li class="icon-code">
+        <a href="/2015/01/06/embed-pdf-reader-in-webapp/">how to embed a pdf reader in webapp</a>
+      </li>
+    
+      <li class="icon-real-life">
+        <a href="/2015/01/06/enjoy-winter-costruzione-stufa-ad-accumulo/">Enjoy Winter! Costruzione stufa ad accumulo</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/06/drummino/">drummino</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/06/debugging-atmega328-project-with-serial/">Debugging Atmega328 projects with serial</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/06/atmega_prj/">Start with a new Atmega328 project</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+    
+	
+    
+	  
+<div class="widget category">
+  <h3 class="title icon-category">Categories</h3>
+  <ul class="entry">
+  
+    <li><a class='icon-code' href="/categories/code/">code</a><small>1</small></li>
+  
+    <li><a class='icon-electron' href="/categories/electron/">electron</a><small>3</small></li>
+  
+    <li><a class='icon-libri' href="/categories/libri/">libri</a><small>1</small></li>
+  
+    <li><a class='icon-real-life' href="/categories/real-life/">real-life</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+    
+	
+    
+	  
+<div class="widget tag">
+  <h3 class="title icon-tag">Tags</h3>
+  
+    <a href="/tags/app/">app<small>1</small></a>
+  
+    <a href="/tags/arduino/">arduino<small>3</small></a>
+  
+    <a href="/tags/atmega/">atmega<small>3</small></a>
+  
+    <a href="/tags/concrete/">concrete<small>1</small></a>
+  
+    <a href="/tags/debug/">debug<small>1</small></a>
+  
+    <a href="/tags/dev/">dev<small>3</small></a>
+  
+    <a href="/tags/diy/">diy<small>2</small></a>
+  
+    <a href="/tags/ita/">ita<small>1</small></a>
+  
+    <a href="/tags/midi/">midi<small>1</small></a>
+  
+    <a href="/tags/pdf/">pdf<small>1</small></a>
+  
+    <a href="/tags/scifi/">scifi<small>1</small></a>
+  
+</div>
+
+
+    
+	
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="padding">
+	<div class="alignleft">
+	  
+	  &copy; 2015 lesion
+	  
+	  powerd by <a href="http://hexo.io/" target="_blank">hexo</a>
+	  and Theme by <a href="https://github.com/halfer53/metro-light" target="_blank">metro-light</a>
+	</div>
+
+	<div class="alignright">
+		
+		
+		
+			<a href="https://twitter.com/johnnydev" target="_blank" title="lesion Twitter"><i class="fa fa-twitter-square"></i></a>	
+		
+		
+		
+		
+		
+	</div>
+
+	<div class="clearfix"></div>
+</div>
+
+<div class="scroll-top"><i class="icon-hammer"></i></div>
+</footer>
+  
+
+		<script type="text/javascript">
+		var disqus_shortname = 'lowtech';
+
+		        (function() {
+		            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		        })();
+		</script>
+
+		<script type="text/javascript">
+		var disqus_shortname = 'lowtech'; 
+
+		(function () {
+		var s = document.createElement('script'); s.async = true;
+		s.type = 'text/javascript';
+		s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		}());
+		</script>
+
+  
+
+
+<!-- <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script> -->
+
+
+
+<script type="text/javascript">
+$(window).scroll(function() {
+
+    if($(this).scrollTop() > 400) {
+        $('.scroll-top').fadeIn(200);
+    } else {
+        $('.scroll-top').fadeOut(200);
+    }
+});
+
+$('.scroll-top').bind('click', function(e) {
+    e.preventDefault();
+    $('body,html').animate({scrollTop:0},200);
+});
+</script>
+
+
+</body>
+</html>

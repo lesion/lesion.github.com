@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[LowTech]]></title>
+  <subtitle><![CDATA[LowTech]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://lesion.github.io/"/>
+  <updated>2015-01-09T13:03:45.374Z</updated>
+  <id>http://lesion.github.io/</id>
+  
+  <author>
+    <name><![CDATA[lesion]]></name>
+    <email><![CDATA[[object Object]]]></email>
+  </author>
+  
+  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[how to embed a pdf reader in webapp]]></title>
+    <link href="http://lesion.github.io/2015/01/06/embed-pdf-reader-in-webapp/"/>
+    <id>http://lesion.github.io/2015/01/06/embed-pdf-reader-in-webapp/</id>
+    <published>2015-01-06T12:31:00.000Z</published>
+    <updated>2015-01-09T12:49:05.000Z</updated>
+    <content type="html"><![CDATA[<p>For an app I’m working on, we need a new feature: <strong>to show some pdf</strong> stored
+server side.</p>
+<p>After some research I found three different solutions to explore:</p>
+<ol>
+<li>using a Cordova plugin like <a href="https://github.com/vfr/Reader" target="_blank" rel="external">Reader</a></li>
+<li>trying with the promising <a href="http://mozilla.github.io/pdf.js/" target="_blank" rel="external">PDF.js</a>, a solution completely based on js to parse/render PDFs client side.</li>
+<li>parse PDF on server side, render it as images and let the client manage an easy jpg.</li>
+</ol>
+<h3 id="Using_Cordova_/_native_code">Using Cordova / native code</h3>
+<p>This is of course the cleaner solution and probably the less error-prone one,
+but as I’m using <a href="https://software.intel.com/it-it/html5/tools" target="_blank" rel="external">Intel XDK</a> (because
+afaik it’s the only solution to develop iOS application with Linux) and you can’t
+debug Cordova plugin in real-time with it, it’s a pain to upload and build the app everytime before
+trying to play with it, we are not in ninethees anymore when <a href="http://xkcd.com/303/" target="_blank" rel="external">compile time</a> was normal.</p>
+<h3 id="PDF-js">PDF.js</h3>
+<p>The first time I looked at this, I thought that this would be the solution I was going to choose.
+The Mozilla team has done a great job here and is stable enougth that they included the reader 
+in Firefox, as you can see using a recent release of Firefox and watching the 
+<a href="http://mozilla.github.io/pdf.js/web/viewer.html" target="_blank" rel="external">demo</a> and the <a href="http://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf" target="_blank" rel="external">pdf</a> used for the demo alone (the interface it’s the same and the console shows same logs).</p>
+<p>The only issue with PDF.js is speed, as with the big PDFs I’m going to work with, the smoothness 
+of application it’s a bit downgraded.</p>
+<h3 id="Choosed_solution_/_server_side_conversion">Choosed solution / server side conversion</h3>
+<p>There are lot of solutions to convert PDF into images and also some script to convert
+a PDF directly into HTML. 
+My solution is splitted into:</p>
+<h4 id="Convert_PDF_into_images:">Convert PDF into images:</h4>
+<figure class="highlight bash"><pre><div class="line"><span class="shebang">#! /bin/bash</span></div><div class="line"><span class="comment"># Mass convert PDF to png - massPDF2PNG.sh</span></div><div class="line"></div><div class="line"><span class="comment"># settings</span></div><div class="line">PDF_PATH=pdf</div><div class="line">PNG_PATH=images</div><div class="line"></div><div class="line"><span class="comment"># check if destination path exists</span></div><div class="line"><span class="keyword">if</span> [ ! <span class="operator">-d</span> <span class="variable">$PNG_PATH</span> ]; <span class="keyword">then</span></div><div class="line">  mkdir <span class="variable">$PNG_PATH</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># convert command / install ImageMagick to use this</span></div><div class="line">convert=<span class="string">"convert -density 300 "</span></div><div class="line"></div><div class="line"><span class="comment"># for each pdf found on selected path</span></div><div class="line"><span class="keyword">for</span> pdf <span class="keyword">in</span> `ls <span class="variable">$PDF_PATH</span>/*.pdf`; <span class="keyword">do</span></div><div class="line">  name=$(basename <span class="variable">$pdf</span> .pdf)</div><div class="line">  <span class="comment"># check if this pdf is converted yet</span></div><div class="line">  ls <span class="variable">$PNG_PATH</span>/<span class="variable">$name</span>*.png <span class="number">2</span>&gt; /dev/null &gt; /dev/null</div><div class="line">  <span class="keyword">if</span> [ $? <span class="operator">-eq</span> <span class="number">0</span> ]; <span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$pdf</span> converted yet! "</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    <span class="comment"># convert it and put in destination path</span></div><div class="line">    <span class="variable">$convert</span> <span class="variable">$pdf</span> <span class="variable">$PNG_PATH</span>/<span class="variable">$name</span>.png</div><div class="line">    <span class="keyword">if</span> [ $? <span class="operator">-ne</span> <span class="number">0</span> ]; <span class="keyword">then</span></div><div class="line">      <span class="built_in">echo</span> <span class="string">"Error converting <span class="variable">$pdf</span>"</span></div><div class="line">      <span class="keyword">exit</span> <span class="number">1</span></div><div class="line">    <span class="keyword">fi</span></div><div class="line">  <span class="keyword">fi</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="keyword">exit</span> <span class="number">0</span></div></pre></figure>
+
+
+<p>This script has to be executed server-side for each changes on pdf
+directory! </p>
+<p>To achieve this in linux we can use <a href="http://en.wikipedia.org/wiki/Inotify" target="_blank" rel="external">inotify</a>, using
+a little <a href="http://stackoverflow.com/a/20381373" target="_blank" rel="external">stackoverflow script</a>.</p>
+<figure class="highlight"><pre><div class="line"><span class="shebang">#! /bin/bash</span></div><div class="line"><span class="comment"># notify_changes.sh</span></div><div class="line">DIRECTORY_TO_OBSERVE=<span class="string">"pdf"</span>     </div><div class="line">function block_<span class="keyword">for</span>_change {</div><div class="line">  inotifywait \</div><div class="line">    <span class="operator">-e</span> modify,move,create,delete \</div><div class="line">    <span class="variable">$DIRECTORY_TO_OBSERVE</span></div><div class="line">}</div><div class="line">BUILD_SCRIPT=massPDF2PNG.sh   </div><div class="line">function build {</div><div class="line">  bash <span class="variable">$BUILD_SCRIPT</span></div><div class="line">}</div><div class="line">build</div><div class="line"><span class="keyword">while</span> block_<span class="keyword">for</span>_change; <span class="keyword">do</span></div><div class="line">  build</div><div class="line"><span class="keyword">done</span></div></pre></figure>
+
+
+<p>So after installing inotify-tools we can run ./notify_changes.sh
+and start copy PDFs into pdf/ directory.
+Converting PDFs into images is slow but after a while you’ll found your
+images (one per page) inside proper directory.</p>
+<p>Last thing, we need to prepare an HTML page to host our images and put some
+pretty css to “emulate” a book style pages:</p>
+<figure class="highlight"><pre><div class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span><span class="tag">&lt;/<span class="title">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">style</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">media</span>=<span class="value">"all"</span>&gt;</span><span class="css"></span></div><div class="line">      <span class="tag">html</span>, <span class="tag">body</span> <span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#9E9E9E</span></span></span>;</div><div class="line"></div><div class="line">      <span class="rule">}</span></div><div class="line">      <span class="tag">img</span> <span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#fff</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">box-sizing</span>:<span class="value"> border-box</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">2px</span> solid <span class="hexcolor">#444</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100%</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> <span class="number">0</span> <span class="number">5px</span> <span class="number">0</span></span></span>;</div><div class="line">      <span class="rule">}</span></div><div class="line">    <span class="tag">&lt;/<span class="title">style</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">""</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">src</span>=<span class="value">"compressed.tracemonkey-pldi-09-0.png"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">""</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">src</span>=<span class="value">"compressed.tracemonkey-pldi-09-1.png"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">""</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">src</span>=<span class="value">"compressed.tracemonkey-pldi-09-2.png"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">""</span> <span class="attribute">alt</span>=<span class="value">""</span> <span class="attribute">src</span>=<span class="value">"compressed.tracemonkey-pldi-09-3.png"</span>/&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></div></pre></figure>
+
+<p>And <a href="/resources/embed_pdf_test.html">here</a> a little demo!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>For an app I’m working on, we need a new feature: <strong>to show some pdf</strong> stored
+server side.</p>
+<p>After some research I foun]]>
+    </summary>
+    
+      <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
+    
+      <category term="app" scheme="http://lesion.github.io/tags/app/"/>
+    
+      <category term="pdf" scheme="http://lesion.github.io/tags/pdf/"/>
+    
+      <category term="code" scheme="http://lesion.github.io/categories/code/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Enjoy Winter! Costruzione stufa ad accumulo]]></title>
+    <link href="http://lesion.github.io/2015/01/06/enjoy-winter-costruzione-stufa-ad-accumulo/"/>
+    <id>http://lesion.github.io/2015/01/06/enjoy-winter-costruzione-stufa-ad-accumulo/</id>
+    <published>2015-01-06T11:04:51.000Z</published>
+    <updated>2015-01-05T15:17:31.000Z</updated>
+    <content type="html"><![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="external">svariati tentativi</a> di risolvere l’enorme problema del freddo campagnolo, abbiamo trovato una soluzione abbastanza funzionante da valere la pena di essere condivisa.</p>
+<p>Abbiamo costruito una <strong>stufa ad accumulo</strong> un po’ per gioco al principio….</p>
+<p><img src="resources/" alt=""></p>
+<p>..e ci e’ piaciuta talmente tanto che ne abbiamo costruita 
+subito una piu’ grande in cucina:</p>
+<p><img src="resources/" alt=""></p>
+<p>e ora posso dirlo con certezza, le stufe ad accumulo sono
+una bomba!!</p>
+<h3 id="Cosa_è_una_stufa_ad_accumulo">Cosa è una stufa ad accumulo</h3>
+<p>Detta in breve:</p>
+<ul>
+<li>consuma pochissima legna (mooolto importante)</li>
+<li>si carica solo due volte al giorno</li>
+<li>e’ sempre calda</li>
+<li>si puo’ autocostruire con facilita’</li>
+<li>il costo di costruzione e’ decisamente fattibile</li>
+<li>il tipo di calore e’ fantastico</li>
+<li>richiede pochissima manutenzione</li>
+</ul>
+<p>Entrando piu’ nel dettaglio, una stufa ad accumulo (anche detta
+stufa in muratura, o stufa a massa termica) funziona scaldando una
+grande massa opportunamente progettata in modo che sia questa a scaldare
+l’ambiente circostante e non la fiamma diretta come avviene nelle stufe
+classiche. </p>
+<p>Questo tipo di stufe sono comunemente divise in due zone, la camera di combustione e 
+il giro di fumi.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="e]]>
+    </summary>
+    
+      <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
+    
+      <category term="concrete" scheme="http://lesion.github.io/tags/concrete/"/>
+    
+      <category term="ita" scheme="http://lesion.github.io/tags/ita/"/>
+    
+      <category term="real-life" scheme="http://lesion.github.io/categories/real-life/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[drummino]]></title>
+    <link href="http://lesion.github.io/2015/01/06/drummino/"/>
+    <id>http://lesion.github.io/2015/01/06/drummino/</id>
+    <published>2015-01-06T11:04:41.000Z</published>
+    <updated>2015-01-05T15:12:57.000Z</updated>
+    <content type="html"><![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
+<p>I’m not explaining how the things work here, take a look at the <a href="https://github.com/lesion/drummino" target="_blank" rel="external">code</a>!</p>
+<p>This is the result using <a href="http://www.hydrogen-music.org/hcms/" target="_blank" rel="external">hydrogen</a>:</p>
+<p align="center">
+<iframe src="//player.vimeo.com/video/108494278" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
+</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
+<p>I’m not explaining how the things work here, take]]>
+    </summary>
+    
+      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
+    
+      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
+    
+      <category term="midi" scheme="http://lesion.github.io/tags/midi/"/>
+    
+      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Debugging Atmega328 projects with serial]]></title>
+    <link href="http://lesion.github.io/2015/01/06/debugging-atmega328-project-with-serial/"/>
+    <id>http://lesion.github.io/2015/01/06/debugging-atmega328-project-with-serial/</id>
+    <published>2015-01-06T11:04:34.000Z</published>
+    <updated>2015-01-05T20:27:33.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+
+<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
+<footer><strong>Brian Kernighan </strong><cite><a href="http://en.wikiquote.org/wiki/Brian_Kernighan" target="_blank" rel="external">"Unix for Beginners" (1979)</a></cite></footer></blockquote>
+
+
+<p>I know, using Serial.print it’s a dirty way to debug source code,
+but hey, it’s cheap!!
+Usually we need debugging only while we are developing the project
+or to experiment something and we don’t need the power of a <a href="http://store.atmel.com/CBC.aspx?q=c:100112" target="_blank" rel="external">real debugger</a>.</p>
+<p>In small hardware projects we usually need to know value of an input, a temperature, the humidity,
+the remaining battery charge or the value of a capacitive sensor….</p>
+<p>That’s what I needed for <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> and that’s why I wrote <a href="http://github.com/lesion/plottino" target="_blank" rel="external">plottino</a>.</p>
+<p>If we don’t want to use an entire arduino for our final project the problem is now,
+how we can look at Serial data coming from an atmega328 in a computer without the serial port?</p>
+<p>My solution is to use another arduino with its FT232R usb2serial converter:</p>
+<p><img src="/images/serial debug.svg" style="width:100%;"></p>
+<p>As you see we only need to connect the TX pin!</p>
+<p>Note that the atmega328 on the arduino is <strong>not</strong> needed as it may interfere with the serial port!
+Here we only use arduino as usb2serial converter.</p>
+<p>Connecting the arduino to usb port of your computer would enable serial data
+coming from the atmega directly to your emulated serial device (/dev/ttyACM?).</p>
+<p>There isn’t neither a crystal oscillator with two 22uF caps here, because I’m
+using the internal oscillator for the <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> project,
+so please take care that with the internal oscillator the Serial baudrate has to be slow!</p>
+<p>You can try to reach 57600 bps but stay at 9600 bps is preferable.</p>
+<p>If you need more speed, you can try to <a href="http://www.atmel.com/Images/doc8002.pdf" target="_blank" rel="external">calibrate the internal oscillator</a>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+
+<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
+<footer><]]>
+    </summary>
+    
+      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
+    
+      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
+    
+      <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
+    
+      <category term="debug" scheme="http://lesion.github.io/tags/debug/"/>
+    
+      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Start with a new Atmega328 project]]></title>
+    <link href="http://lesion.github.io/2015/01/06/atmega_prj/"/>
+    <id>http://lesion.github.io/2015/01/06/atmega_prj/</id>
+    <published>2015-01-06T11:04:20.000Z</published>
+    <updated>2015-01-05T20:29:20.000Z</updated>
+    <content type="html"><![CDATA[<p>Every time I need to create something with the famous <a href="http://en.wikipedia.org/wiki/ATmega328" target="_blank" rel="external">atmega328p</a>
+(the chip on every arduino), I’m doing those follow steps I decided to share.</p>
+<h2 id="Let’s_start">Let’s start</h2>
+<p>To prepare a board for a generic atmega328 project, we need:</p>
+<ul>
+<li>atmega328</li>
+<li>a board</li>
+<li>16 MHz clock crystal</li>
+<li>2 22 pF capacitors</li>
+</ul>
+<p><img src="/images/umidino_bare.svg" alt="umidino_bare"></p>
+<p>This could seems a very minimal installation but the atmega328 could also run
+without an external oscillator, but it’s really better to
+have one (we avoid a lot of issues while programming and debugging).
+I’ll show you some project that doesn’t need the crystal in next article.</p>
+<p>Capacitors are not mandatory neither (with crystal, without crystal there’s not
+need at all for them) but better to follow specifications.
+I’ve some project running without them but only the crystal without any issues.</p>
+<p>Ok…
+The pins we are going to wire the oscillator are the <strong>9</strong> and <strong>10</strong>, while
+caps are between <strong>GND</strong> (pin <strong>8</strong>) and above pins.
+Pretty easy no?</p>
+<p>I’m using the common <a href="http://www.fischl.de/usbasp/" target="_blank" rel="external">usbasp</a> programmer
+to talk with the atmega, you can find it on ebay for 4$ (or less).</p>
+<p>Beginning to play is easy as wiring our usbasp programmer to the chip.
+The pinout for wiring is easy to found on the web, my usbasp
+as the ISP10 pin socket so let’s prepare the female part for
+convenience on our board with the information we found:</p>
+<p><img src="/images/usbaspPinout.jpg" alt="usbaspPinout"></p>
+<p>Looking at <a href="http://arduino.cc/en/Hacking/PinMapping168" target="_blank" rel="external">atmega pinmapping</a>
+we easily found how to connect the ISP header to our atmega:</p>
+<p><img src="/images/umidino_isp10.svg" alt="ISP10 to Atmega"></p>
+<h2 id="Program_atmega328_using_usbasp_programmer">Program atmega328 using usbasp programmer</h2>
+<p>We are going to use the Arduino IDE to talk with t he chip, to achieve
+that we need to explain the IDE how to use the usbasp
+instead of using the default arduino programmer.</p>
+<p>In order to do this, open Arduino IDE and select <strong>USBasp</strong> in
+<strong>Tools &gt; Programmer</strong> menu. If it’s not present, you need to add
+follow lines in <strong>programmers.txt</strong> in your sketchbook/hardware folder
+(close Arduino IDE before doing this):</p>
+<figure class="highlight"><pre><div class="line">usbasp.<span class="variable">name=</span>USBasp</div><div class="line">usbasp.<span class="variable">communication=</span>usb</div><div class="line">usbasp.<span class="variable">protocol=</span>usbasp</div></pre></figure>
+
+<p>Let’s test our setup with the blink sketch (File &gt; Example &gt; Basic &gt; Blink)
+uploading the code through the usbasp programmer (File &gt; Upload with programmer)
+or pressing Shift and click on Upload icon!
+Do not forget to add a led on correct pin:</p>
+<p><img src="/images/atmega_blink_test.svg" alt="atmega_blink_test"></p>
+<p>After upload you should see the led blink once a second.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Every time I need to create something with the famous <a href="http://en.wikipedia.org/wiki/ATmega328" target="_blank" rel="external">atm]]>
+    </summary>
+    
+      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
+    
+      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
+    
+      <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
+    
+      <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
+    
+      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[il piu grande uomo scimmia del pleistocene]]></title>
+    <link href="http://lesion.github.io/2015/01/04/il-piu-grande-uomo-scimmia-del-pleistocene/"/>
+    <id>http://lesion.github.io/2015/01/04/il-piu-grande-uomo-scimmia-del-pleistocene/</id>
+    <published>2015-01-04T18:27:13.000Z</published>
+    <updated>2015-01-05T13:37:41.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="/images/ilpiugrande.jpg" alt="copertina">
+un libro molto divertente, molto scorrevole e scritto talmente bene che potrebbe non distaccarsi cosi’ tanto dalla realta’. </p>
+<p>non posso non citare l’introduzione “il libro piu’ divertente degli ultimi cinquecentomila anni” :)</p>
+<p>Detto in breve, e’ la storia romanzata di come potrebbero essere avvenute le prime e piu’ importanti scoperte del genere umano.</p>
+<p>Assolutamente consigliato!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="/images/ilpiugrande.jpg" alt="copertina">
+un libro molto divertente, molto scorrevole e scritto talmente bene che potrebbe non ]]>
+    </summary>
+    
+      <category term="scifi" scheme="http://lesion.github.io/tags/scifi/"/>
+    
+      <category term="libri" scheme="http://lesion.github.io/categories/libri/"/>
+    
+  </entry>
+  
+</feed>

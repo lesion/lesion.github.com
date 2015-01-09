@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  
+  <title>Start with a new Atmega328 project | LowTech</title>
+  <meta name="author" content="lesion">
+  
+  <meta name="description" content="Every time I need to create something with the famous atmega328p
+(the chip on every arduino), I’m doing those follow steps I decided to share.
+Let’s s">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Start with a new Atmega328 project"/>
+  <meta property="og:site_name" content="LowTech"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <meta http-equiv="Content-Language" content="en"/>
+  
+
+  <link href="/img/favicon.png" rel="icon">
+  
+    <link rel="apple-touch-icon" href="/img/apple-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple-icon.png">
+    
+
+  <link rel="alternate" href="/atom.xml" title="LowTech" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  
+  <style type="text/css">
+  /* Tim Pietrusky advanced checkbox hack (Android <= 4.1.2) */
+body{ -webkit-animation: bugfix infinite 1s; }
+@-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
+
+  
+
+  
+    article .post-content-index .entry{max-height: 550px; overflow:hidden;}
+  
+</style>
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-1.11.1.min.js"></script>
+
+
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="padding">
+	<nav id="main-nav" class="alignright">
+		<input type="checkbox" id="toggle" />
+		<label for="toggle" class="toggle" data-open="Main Menu" data-close="Close Menu" onclick><i class="fa fa-bars"></i></label>
+	  <ul class="menu">
+	    
+	      <li><a class='icon-Home' href="/">Home</a></li>
+	    
+	      <li><a class='icon-Feed' href="atom.xml">Feed</a></li>
+	    
+	      <li><a class='icon-Github' href="http://github.com/lesion">Github</a></li>
+	    
+	    
+	  </ul>
+	</nav>
+	<div class="clearfix"></div>
+</div>
+</header>
+  <div id="page-heading-wrap">
+  	<div class="inner">
+      <div class="padding">
+    		
+          
+            <h1 class="icon-electron">Start with a new Atmega328 project</h1>
+          
+          <ul>
+            <li>
+              <time datetime="2015-01-06T11:04:20.000Z">6 Jan 2015</time> / 
+              <span>a generic programmable atmega328 project
+              </span>
+            </li>
+          </ul>
+        <span class='tags alignright'>
+  
+  <div class="icon-tag">
+    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/dev/">dev</a>, <a href="/tags/diy/">diy</a>
+  </div>
+
+</span>
+        
+      </div>
+  	</div>
+  </div>
+
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper" class="padding"><article class="post">
+  
+  
+    <div class="post-content">
+  
+      
+        
+          <div class="entry">
+            <p>Every time I need to create something with the famous <a href="http://en.wikipedia.org/wiki/ATmega328" target="_blank" rel="external">atmega328p</a>
+(the chip on every arduino), I’m doing those follow steps I decided to share.</p>
+<h2 id="Let’s_start">Let’s start</h2>
+<p>To prepare a board for a generic atmega328 project, we need:</p>
+<ul>
+<li>atmega328</li>
+<li>a board</li>
+<li>16 MHz clock crystal</li>
+<li>2 22 pF capacitors</li>
+</ul>
+<p><img src="/images/umidino_bare.svg" alt="umidino_bare"></p>
+<p>This could seems a very minimal installation but the atmega328 could also run
+without an external oscillator, but it’s really better to
+have one (we avoid a lot of issues while programming and debugging).
+I’ll show you some project that doesn’t need the crystal in next article.</p>
+<p>Capacitors are not mandatory neither (with crystal, without crystal there’s not
+need at all for them) but better to follow specifications.
+I’ve some project running without them but only the crystal without any issues.</p>
+<p>Ok…
+The pins we are going to wire the oscillator are the <strong>9</strong> and <strong>10</strong>, while
+caps are between <strong>GND</strong> (pin <strong>8</strong>) and above pins.
+Pretty easy no?</p>
+<p>I’m using the common <a href="http://www.fischl.de/usbasp/" target="_blank" rel="external">usbasp</a> programmer
+to talk with the atmega, you can find it on ebay for 4$ (or less).</p>
+<p>Beginning to play is easy as wiring our usbasp programmer to the chip.
+The pinout for wiring is easy to found on the web, my usbasp
+as the ISP10 pin socket so let’s prepare the female part for
+convenience on our board with the information we found:</p>
+<p><img src="/images/usbaspPinout.jpg" alt="usbaspPinout"></p>
+<p>Looking at <a href="http://arduino.cc/en/Hacking/PinMapping168" target="_blank" rel="external">atmega pinmapping</a>
+we easily found how to connect the ISP header to our atmega:</p>
+<p><img src="/images/umidino_isp10.svg" alt="ISP10 to Atmega"></p>
+<h2 id="Program_atmega328_using_usbasp_programmer">Program atmega328 using usbasp programmer</h2>
+<p>We are going to use the Arduino IDE to talk with t he chip, to achieve
+that we need to explain the IDE how to use the usbasp
+instead of using the default arduino programmer.</p>
+<p>In order to do this, open Arduino IDE and select <strong>USBasp</strong> in
+<strong>Tools &gt; Programmer</strong> menu. If it’s not present, you need to add
+follow lines in <strong>programmers.txt</strong> in your sketchbook/hardware folder
+(close Arduino IDE before doing this):</p>
+<figure class="highlight"><pre><div class="line">usbasp.<span class="variable">name=</span>USBasp</div><div class="line">usbasp.<span class="variable">communication=</span>usb</div><div class="line">usbasp.<span class="variable">protocol=</span>usbasp</div></pre></figure>
+
+<p>Let’s test our setup with the blink sketch (File &gt; Example &gt; Basic &gt; Blink)
+uploading the code through the usbasp programmer (File &gt; Upload with programmer)
+or pressing Shift and click on Upload icon!
+Do not forget to add a led on correct pin:</p>
+<p><img src="/images/atmega_blink_test.svg" alt="atmega_blink_test"></p>
+<p>After upload you should see the led blink once a second.</p>
+
+          </div>
+        
+      <footer>
+        
+          
+  
+  <div class="icon-category">
+    <a href="/categories/electron/">electron</a>
+  </div>
+
+
+          
+  
+  <div class="icon-tag">
+    <a href="/tags/arduino/">arduino</a>, <a href="/tags/atmega/">atmega</a>, <a href="/tags/dev/">dev</a>, <a href="/tags/diy/">diy</a>
+  </div>
+
+
+          <div class="share">
+  
+
+    
+
+    
+      <div class="g-plusone"></div>
+
+      <script type="text/javascript">
+        window.___gcfg = {lang: 'en-GB'};
+
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/platform.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    
+
+    
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="halfer53">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    
+  
+</div>
+          
+<nav class="article-nav clearfix">
+ 
+ <div class="article-prev" >
+ <a href="/2015/01/06/debugging-atmega328-project-with-serial/" title="Debugging Atmega328 projects with serial">
+  <span>
+  &lt;&nbsp; Debugging Atmega328 projects with serial</span>
+</a>
+</div>
+
+
+<div class="article-next">
+<a href="/2015/01/04/il-piu-grande-uomo-scimmia-del-pleistocene/"  title="il piu grande uomo scimmia del pleistocene">
+ <span>il piu grande uomo scimmia del pleistocene
+ &gt; </span> 
+</a>
+</div>
+
+</nav>
+
+
+        
+        <div class="clearfix"></div>
+      </footer>
+    </div>
+</article>
+
+
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+
+  <div id="disqus_thread"></div>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright"><div class="padding">
+	
+    
+	  
+<div class="widget recent-post">
+  <h3 class="title icon-post">Recent Posts</h3>
+  <ul class="entry">
+    
+      <li class="icon-code">
+        <a href="/2015/01/06/embed-pdf-reader-in-webapp/">how to embed a pdf reader in webapp</a>
+      </li>
+    
+      <li class="icon-real-life">
+        <a href="/2015/01/06/enjoy-winter-costruzione-stufa-ad-accumulo/">Enjoy Winter! Costruzione stufa ad accumulo</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/06/drummino/">drummino</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/06/debugging-atmega328-project-with-serial/">Debugging Atmega328 projects with serial</a>
+      </li>
+    
+      <li class="icon-electron">
+        <a href="/2015/01/06/atmega_prj/">Start with a new Atmega328 project</a>
+      </li>
+    
+  </ul>
+</div>
+
+
+    
+	
+    
+	  
+<div class="widget category">
+  <h3 class="title icon-category">Categories</h3>
+  <ul class="entry">
+  
+    <li><a class='icon-code' href="/categories/code/">code</a><small>1</small></li>
+  
+    <li><a class='icon-electron' href="/categories/electron/">electron</a><small>3</small></li>
+  
+    <li><a class='icon-libri' href="/categories/libri/">libri</a><small>1</small></li>
+  
+    <li><a class='icon-real-life' href="/categories/real-life/">real-life</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+    
+	
+    
+	  
+<div class="widget tag">
+  <h3 class="title icon-tag">Tags</h3>
+  
+    <a href="/tags/app/">app<small>1</small></a>
+  
+    <a href="/tags/arduino/">arduino<small>3</small></a>
+  
+    <a href="/tags/atmega/">atmega<small>3</small></a>
+  
+    <a href="/tags/concrete/">concrete<small>1</small></a>
+  
+    <a href="/tags/debug/">debug<small>1</small></a>
+  
+    <a href="/tags/dev/">dev<small>3</small></a>
+  
+    <a href="/tags/diy/">diy<small>2</small></a>
+  
+    <a href="/tags/ita/">ita<small>1</small></a>
+  
+    <a href="/tags/midi/">midi<small>1</small></a>
+  
+    <a href="/tags/pdf/">pdf<small>1</small></a>
+  
+    <a href="/tags/scifi/">scifi<small>1</small></a>
+  
+</div>
+
+
+    
+	
+</div>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="padding">
+	<div class="alignleft">
+	  
+	  &copy; 2015 lesion
+	  
+	  powerd by <a href="http://hexo.io/" target="_blank">hexo</a>
+	  and Theme by <a href="https://github.com/halfer53/metro-light" target="_blank">metro-light</a>
+	</div>
+
+	<div class="alignright">
+		
+		
+		
+			<a href="https://twitter.com/johnnydev" target="_blank" title="lesion Twitter"><i class="fa fa-twitter-square"></i></a>	
+		
+		
+		
+		
+		
+	</div>
+
+	<div class="clearfix"></div>
+</div>
+
+<div class="scroll-top"><i class="icon-hammer"></i></div>
+</footer>
+  
+
+		<script type="text/javascript">
+		var disqus_shortname = 'lowtech';
+
+		        (function() {
+		            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		        })();
+		</script>
+
+		<script type="text/javascript">
+		var disqus_shortname = 'lowtech'; 
+
+		(function () {
+		var s = document.createElement('script'); s.async = true;
+		s.type = 'text/javascript';
+		s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+		(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+		}());
+		</script>
+
+  
+
+
+<!-- <script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script> -->
+
+
+
+<script type="text/javascript">
+$(window).scroll(function() {
+
+    if($(this).scrollTop() > 400) {
+        $('.scroll-top').fadeIn(200);
+    } else {
+        $('.scroll-top').fadeOut(200);
+    }
+});
+
+$('.scroll-top').bind('click', function(e) {
+    e.preventDefault();
+    $('body,html').animate({scrollTop:0},200);
+});
+</script>
+
+
+</body>
+</html>
