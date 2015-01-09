@@ -4,7 +4,7 @@
   <subtitle><![CDATA[LowTech]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://lesion.github.io/"/>
-  <updated>2015-01-09T13:16:08.136Z</updated>
+  <updated>2015-01-09T13:22:22.530Z</updated>
   <id>http://lesion.github.io/</id>
   
   <author>
@@ -13,6 +13,53 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Enjoy Winter! Costruzione stufa ad accumulo]]></title>
+    <link href="http://lesion.github.io/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/"/>
+    <id>http://lesion.github.io/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/</id>
+    <published>2015-01-09T13:17:26.000Z</published>
+    <updated>2015-01-09T13:17:25.000Z</updated>
+    <content type="html"><![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="external">svariati tentativi</a> di risolvere l’enorme problema del freddo campagnolo, abbiamo trovato una soluzione abbastanza funzionante da valere la pena di essere condivisa.</p>
+<p>Abbiamo costruito una <strong>stufa ad accumulo</strong> un po’ per gioco al principio….</p>
+<p><img src="/images/stufa_studio.png" alt="stufa studio"></p>
+<p>..e ci e’ piaciuta talmente tanto che ne abbiamo costruita 
+subito una piu’ grande in cucina:</p>
+<p><img src="/resourc/" alt=""></p>
+<p>e ora posso dirlo con certezza, le stufe ad accumulo sono
+una bomba!!</p>
+<h3 id="Cosa_è_una_stufa_ad_accumulo">Cosa è una stufa ad accumulo</h3>
+<p>Detta in breve:</p>
+<ul>
+<li>consuma pochissima legna (mooolto importante)</li>
+<li>si carica solo due volte al giorno</li>
+<li>e’ sempre calda</li>
+<li>si puo’ autocostruire con facilita’</li>
+<li>il costo di costruzione e’ decisamente fattibile</li>
+<li>il tipo di calore e’ fantastico</li>
+<li>richiede pochissima manutenzione</li>
+</ul>
+<p>Entrando piu’ nel dettaglio, una stufa ad accumulo (anche detta
+stufa in muratura, o stufa a massa termica) funziona scaldando una
+grande massa opportunamente progettata in modo che sia questa a scaldare
+l’ambiente circostante e non la fiamma diretta come avviene nelle stufe
+classiche. </p>
+<p>Questo tipo di stufe sono comunemente divise in due zone, la camera di combustione e 
+il giro di fumi.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="e]]>
+    </summary>
+    
+      <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
+    
+      <category term="concrete" scheme="http://lesion.github.io/tags/concrete/"/>
+    
+      <category term="ita" scheme="http://lesion.github.io/tags/ita/"/>
+    
+      <category term="real-life" scheme="http://lesion.github.io/categories/real-life/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[how to embed a pdf reader in webapp]]></title>
@@ -79,53 +126,6 @@ server side.</p>
       <category term="pdf" scheme="http://lesion.github.io/tags/pdf/"/>
     
       <category term="code" scheme="http://lesion.github.io/categories/code/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Enjoy Winter! Costruzione stufa ad accumulo]]></title>
-    <link href="http://lesion.github.io/2015/01/06/enjoy-winter-costruzione-stufa-ad-accumulo/"/>
-    <id>http://lesion.github.io/2015/01/06/enjoy-winter-costruzione-stufa-ad-accumulo/</id>
-    <published>2015-01-06T11:04:51.000Z</published>
-    <updated>2015-01-05T15:17:31.000Z</updated>
-    <content type="html"><![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="external">svariati tentativi</a> di risolvere l’enorme problema del freddo campagnolo, abbiamo trovato una soluzione abbastanza funzionante da valere la pena di essere condivisa.</p>
-<p>Abbiamo costruito una <strong>stufa ad accumulo</strong> un po’ per gioco al principio….</p>
-<p><img src="resources/" alt=""></p>
-<p>..e ci e’ piaciuta talmente tanto che ne abbiamo costruita 
-subito una piu’ grande in cucina:</p>
-<p><img src="resources/" alt=""></p>
-<p>e ora posso dirlo con certezza, le stufe ad accumulo sono
-una bomba!!</p>
-<h3 id="Cosa_è_una_stufa_ad_accumulo">Cosa è una stufa ad accumulo</h3>
-<p>Detta in breve:</p>
-<ul>
-<li>consuma pochissima legna (mooolto importante)</li>
-<li>si carica solo due volte al giorno</li>
-<li>e’ sempre calda</li>
-<li>si puo’ autocostruire con facilita’</li>
-<li>il costo di costruzione e’ decisamente fattibile</li>
-<li>il tipo di calore e’ fantastico</li>
-<li>richiede pochissima manutenzione</li>
-</ul>
-<p>Entrando piu’ nel dettaglio, una stufa ad accumulo (anche detta
-stufa in muratura, o stufa a massa termica) funziona scaldando una
-grande massa opportunamente progettata in modo che sia questa a scaldare
-l’ambiente circostante e non la fiamma diretta come avviene nelle stufe
-classiche. </p>
-<p>Questo tipo di stufe sono comunemente divise in due zone, la camera di combustione e 
-il giro di fumi.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="e]]>
-    </summary>
-    
-      <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
-    
-      <category term="concrete" scheme="http://lesion.github.io/tags/concrete/"/>
-    
-      <category term="ita" scheme="http://lesion.github.io/tags/ita/"/>
-    
-      <category term="real-life" scheme="http://lesion.github.io/categories/real-life/"/>
     
   </entry>
   
