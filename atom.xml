@@ -4,7 +4,7 @@
   <subtitle><![CDATA[LowTech]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://lesion.github.io/"/>
-  <updated>2015-01-09T17:47:35.389Z</updated>
+  <updated>2015-01-12T11:51:13.214Z</updated>
   <id>http://lesion.github.io/</id>
   
   <author>
@@ -63,6 +63,34 @@ della costruzione del tutto! Enjoy:</p>
   </entry>
   
   <entry>
+    <title><![CDATA[drummino]]></title>
+    <link href="http://lesion.github.io/2015/01/09/drummino/"/>
+    <id>http://lesion.github.io/2015/01/09/drummino/</id>
+    <published>2015-01-09T17:46:30.000Z</published>
+    <updated>2015-01-05T15:12:57.000Z</updated>
+    <content type="html"><![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
+<p>I’m not explaining how the things work here, take a look at the <a href="https://github.com/lesion/drummino" target="_blank" rel="external">code</a>!</p>
+<p>This is the result using <a href="http://www.hydrogen-music.org/hcms/" target="_blank" rel="external">hydrogen</a>:</p>
+<p align="center">
+<iframe src="//player.vimeo.com/video/108494278" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
+</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
+<p>I’m not explaining how the things work here, take]]>
+    </summary>
+    
+      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
+    
+      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
+    
+      <category term="midi" scheme="http://lesion.github.io/tags/midi/"/>
+    
+      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Debugging Atmega328 projects with serial]]></title>
     <link href="http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/"/>
     <id>http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/</id>
@@ -110,34 +138,6 @@ so please take care that with the internal oscillator the Serial baudrate has to
       <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
     
       <category term="debug" scheme="http://lesion.github.io/tags/debug/"/>
-    
-      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[drummino]]></title>
-    <link href="http://lesion.github.io/2015/01/09/drummino/"/>
-    <id>http://lesion.github.io/2015/01/09/drummino/</id>
-    <published>2015-01-09T17:46:30.000Z</published>
-    <updated>2015-01-05T15:12:57.000Z</updated>
-    <content type="html"><![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
-<p>I’m not explaining how the things work here, take a look at the <a href="https://github.com/lesion/drummino" target="_blank" rel="external">code</a>!</p>
-<p>This is the result using <a href="http://www.hydrogen-music.org/hcms/" target="_blank" rel="external">hydrogen</a>:</p>
-<p align="center">
-<iframe src="//player.vimeo.com/video/108494278" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
-</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
-<p>I’m not explaining how the things work here, take]]>
-    </summary>
-    
-      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
-    
-      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
-    
-      <category term="midi" scheme="http://lesion.github.io/tags/midi/"/>
     
       <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
     
