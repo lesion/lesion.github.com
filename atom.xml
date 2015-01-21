@@ -4,7 +4,7 @@
   <subtitle><![CDATA[LowTech]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://lesion.github.io/"/>
-  <updated>2015-01-13T11:46:53.384Z</updated>
+  <updated>2015-01-21T16:18:24.297Z</updated>
   <id>http://lesion.github.io/</id>
   
   <author>
@@ -13,6 +13,33 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Learning Node.js, node-webkit and polymer writing a usefull desktop app]]></title>
+    <link href="http://lesion.github.io/2015/01/13/Learning-Node-js-node-webkit-and-polymer-writing-a-usefull-desktop-app/"/>
+    <id>http://lesion.github.io/2015/01/13/Learning-Node-js-node-webkit-and-polymer-writing-a-usefull-desktop-app/</id>
+    <published>2015-01-13T14:14:23.000Z</published>
+    <updated>2015-01-13T14:14:23.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="Intro">Intro</h3>
+<p>As always, I do not want to repeat something you can easily found around the web, if you
+want to continue reading, please check out what I’m gonna talking about:</p>
+<ul>
+<li><a href="http://nodejs.org" target="_blank" rel="external">Node.js</a> / javascript server side</li>
+<li><a href="https://github.com/rogerwang/node-webkit" target="_blank" rel="external">node-webkit</a> / Write your desktop app in html/css/js</li>
+<li><a href="http://ionicframework.com" target="_blank" rel="external">ionic</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="Intro">Intro</h3>
+<p>As always, I do not want to repeat something you can easily found around the web, if you
+want to continue readi]]>
+    </summary>
+    
+      <category term="node, node-webkit, ionic, dev, js, html5" scheme="http://lesion.github.io/tags/node-node-webkit-ionic-dev-js-html5/"/>
+    
+      <category term="code" scheme="http://lesion.github.io/categories/code/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Enjoy Winter! Costruzione stufa ad accumulo]]></title>
