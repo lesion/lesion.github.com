@@ -4,7 +4,7 @@
   <subtitle><![CDATA[LowTech]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://lesion.github.io/"/>
-  <updated>2015-01-21T16:18:24.297Z</updated>
+  <updated>2015-01-21T16:25:27.428Z</updated>
   <id>http://lesion.github.io/</id>
   
   <author>
@@ -13,33 +13,6 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[Learning Node.js, node-webkit and polymer writing a usefull desktop app]]></title>
-    <link href="http://lesion.github.io/2015/01/13/Learning-Node-js-node-webkit-and-polymer-writing-a-usefull-desktop-app/"/>
-    <id>http://lesion.github.io/2015/01/13/Learning-Node-js-node-webkit-and-polymer-writing-a-usefull-desktop-app/</id>
-    <published>2015-01-13T14:14:23.000Z</published>
-    <updated>2015-01-13T14:14:23.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="Intro">Intro</h3>
-<p>As always, I do not want to repeat something you can easily found around the web, if you
-want to continue reading, please check out what I’m gonna talking about:</p>
-<ul>
-<li><a href="http://nodejs.org" target="_blank" rel="external">Node.js</a> / javascript server side</li>
-<li><a href="https://github.com/rogerwang/node-webkit" target="_blank" rel="external">node-webkit</a> / Write your desktop app in html/css/js</li>
-<li><a href="http://ionicframework.com" target="_blank" rel="external">ionic</a></li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="Intro">Intro</h3>
-<p>As always, I do not want to repeat something you can easily found around the web, if you
-want to continue readi]]>
-    </summary>
-    
-      <category term="node, node-webkit, ionic, dev, js, html5" scheme="http://lesion.github.io/tags/node-node-webkit-ionic-dev-js-html5/"/>
-    
-      <category term="code" scheme="http://lesion.github.io/categories/code/"/>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[Enjoy Winter! Costruzione stufa ad accumulo]]></title>
@@ -86,87 +59,6 @@ della costruzione del tutto! Enjoy:</p>
       <category term="ita" scheme="http://lesion.github.io/tags/ita/"/>
     
       <category term="real-life" scheme="http://lesion.github.io/categories/real-life/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[drummino]]></title>
-    <link href="http://lesion.github.io/2015/01/09/drummino/"/>
-    <id>http://lesion.github.io/2015/01/09/drummino/</id>
-    <published>2015-01-09T17:46:30.000Z</published>
-    <updated>2015-01-05T15:12:57.000Z</updated>
-    <content type="html"><![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
-<p>I’m not explaining how the things work here, take a look at the <a href="https://github.com/lesion/drummino" target="_blank" rel="external">code</a>!</p>
-<p>This is the result using <a href="http://www.hydrogen-music.org/hcms/" target="_blank" rel="external">hydrogen</a>:</p>
-<p align="center">
-<iframe src="//player.vimeo.com/video/108494278" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
-</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
-<p>I’m not explaining how the things work here, take]]>
-    </summary>
-    
-      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
-    
-      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
-    
-      <category term="midi" scheme="http://lesion.github.io/tags/midi/"/>
-    
-      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Debugging Atmega328 projects with serial]]></title>
-    <link href="http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/"/>
-    <id>http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/</id>
-    <published>2015-01-09T17:46:30.000Z</published>
-    <updated>2015-01-05T20:27:33.000Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-
-<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
-<footer><strong>Brian Kernighan </strong><cite><a href="http://en.wikiquote.org/wiki/Brian_Kernighan" target="_blank" rel="external">"Unix for Beginners" (1979)</a></cite></footer></blockquote>
-
-
-<p>I know, using Serial.print it’s a dirty way to debug source code,
-but hey, it’s cheap!!
-Usually we need debugging only while we are developing the project
-or to experiment something and we don’t need the power of a <a href="http://store.atmel.com/CBC.aspx?q=c:100112" target="_blank" rel="external">real debugger</a>.</p>
-<p>In small hardware projects we usually need to know value of an input, a temperature, the humidity,
-the remaining battery charge or the value of a capacitive sensor….</p>
-<p>That’s what I needed for <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> and that’s why I wrote <a href="http://github.com/lesion/plottino" target="_blank" rel="external">plottino</a>.</p>
-<p>If we don’t want to use an entire arduino for our final project the problem is now,
-how we can look at Serial data coming from an atmega328 in a computer without the serial port?</p>
-<p>My solution is to use another arduino with its FT232R usb2serial converter:</p>
-<p><img src="/images/serial debug.svg" style="width:100%;"></p>
-<p>As you see we only need to connect the TX pin!</p>
-<p>Note that the atmega328 on the arduino is <strong>not</strong> needed as it may interfere with the serial port!
-Here we only use arduino as usb2serial converter.</p>
-<p>Connecting the arduino to usb port of your computer would enable serial data
-coming from the atmega directly to your emulated serial device (/dev/ttyACM?).</p>
-<p>There isn’t neither a crystal oscillator with two 22uF caps here, because I’m
-using the internal oscillator for the <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> project,
-so please take care that with the internal oscillator the Serial baudrate has to be slow!</p>
-<p>You can try to reach 57600 bps but stay at 9600 bps is preferable.</p>
-<p>If you need more speed, you can try to <a href="http://www.atmel.com/Images/doc8002.pdf" target="_blank" rel="external">calibrate the internal oscillator</a>.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<blockquote>
-
-<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
-<footer><]]>
-    </summary>
-    
-      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
-    
-      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
-    
-      <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
-    
-      <category term="debug" scheme="http://lesion.github.io/tags/debug/"/>
-    
-      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
     
   </entry>
   
@@ -236,6 +128,87 @@ Do not forget to add a led on correct pin:</p>
       <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
     
       <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
+    
+      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Debugging Atmega328 projects with serial]]></title>
+    <link href="http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/"/>
+    <id>http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/</id>
+    <published>2015-01-09T17:46:30.000Z</published>
+    <updated>2015-01-05T20:27:33.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+
+<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
+<footer><strong>Brian Kernighan </strong><cite><a href="http://en.wikiquote.org/wiki/Brian_Kernighan" target="_blank" rel="external">"Unix for Beginners" (1979)</a></cite></footer></blockquote>
+
+
+<p>I know, using Serial.print it’s a dirty way to debug source code,
+but hey, it’s cheap!!
+Usually we need debugging only while we are developing the project
+or to experiment something and we don’t need the power of a <a href="http://store.atmel.com/CBC.aspx?q=c:100112" target="_blank" rel="external">real debugger</a>.</p>
+<p>In small hardware projects we usually need to know value of an input, a temperature, the humidity,
+the remaining battery charge or the value of a capacitive sensor….</p>
+<p>That’s what I needed for <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> and that’s why I wrote <a href="http://github.com/lesion/plottino" target="_blank" rel="external">plottino</a>.</p>
+<p>If we don’t want to use an entire arduino for our final project the problem is now,
+how we can look at Serial data coming from an atmega328 in a computer without the serial port?</p>
+<p>My solution is to use another arduino with its FT232R usb2serial converter:</p>
+<p><img src="/images/serial debug.svg" style="width:100%;"></p>
+<p>As you see we only need to connect the TX pin!</p>
+<p>Note that the atmega328 on the arduino is <strong>not</strong> needed as it may interfere with the serial port!
+Here we only use arduino as usb2serial converter.</p>
+<p>Connecting the arduino to usb port of your computer would enable serial data
+coming from the atmega directly to your emulated serial device (/dev/ttyACM?).</p>
+<p>There isn’t neither a crystal oscillator with two 22uF caps here, because I’m
+using the internal oscillator for the <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> project,
+so please take care that with the internal oscillator the Serial baudrate has to be slow!</p>
+<p>You can try to reach 57600 bps but stay at 9600 bps is preferable.</p>
+<p>If you need more speed, you can try to <a href="http://www.atmel.com/Images/doc8002.pdf" target="_blank" rel="external">calibrate the internal oscillator</a>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+
+<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
+<footer><]]>
+    </summary>
+    
+      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
+    
+      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
+    
+      <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
+    
+      <category term="debug" scheme="http://lesion.github.io/tags/debug/"/>
+    
+      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[drummino]]></title>
+    <link href="http://lesion.github.io/2015/01/09/drummino/"/>
+    <id>http://lesion.github.io/2015/01/09/drummino/</id>
+    <published>2015-01-09T17:46:30.000Z</published>
+    <updated>2015-01-05T15:12:57.000Z</updated>
+    <content type="html"><![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
+<p>I’m not explaining how the things work here, take a look at the <a href="https://github.com/lesion/drummino" target="_blank" rel="external">code</a>!</p>
+<p>This is the result using <a href="http://www.hydrogen-music.org/hcms/" target="_blank" rel="external">hydrogen</a>:</p>
+<p align="center">
+<iframe src="//player.vimeo.com/video/108494278" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
+</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
+<p>I’m not explaining how the things work here, take]]>
+    </summary>
+    
+      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
+    
+      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
+    
+      <category term="midi" scheme="http://lesion.github.io/tags/midi/"/>
     
       <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
     
