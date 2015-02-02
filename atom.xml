@@ -4,7 +4,7 @@
   <subtitle><![CDATA[LowTech]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://lesion.github.io/"/>
-  <updated>2015-02-02T11:56:23.174Z</updated>
+  <updated>2015-02-02T12:02:26.903Z</updated>
   <id>http://lesion.github.io/</id>
   
   <author>
@@ -13,54 +13,6 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[Enjoy Winter! Costruzione stufa ad accumulo]]></title>
-    <link href="http://lesion.github.io/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/"/>
-    <id>http://lesion.github.io/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/</id>
-    <published>2015-01-09T17:46:30.000Z</published>
-    <updated>2015-01-09T17:29:07.000Z</updated>
-    <content type="html"><![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="external">svariati tentativi</a> di risolvere l’enorme problema del freddo campagnolo, abbiamo trovato una soluzione abbastanza funzionante da valere la pena di essere condivisa.</p>
-<p>Abbiamo costruito una <strong>stufa ad accumulo</strong> un po’ per gioco al principio….</p>
-<p><img src="/images/stufa_studio.png" alt="stufa studio"></p>
-<p>..e ci e’ piaciuta talmente tanto che ne abbiamo costruita 
-subito una piu’ grande in cucina:</p>
-<p><img src="/images/stufa_cucina.png" alt="stufa cucina"></p>
-<p>e ora posso dirlo con certezza, le stufe ad accumulo sono
-una bomba!!</p>
-<h3 id="Cosa_è_una_stufa_ad_accumulo">Cosa è una stufa ad accumulo</h3>
-<p>Detta in breve:</p>
-<ul>
-<li>consuma pochissima legna (mooolto importante)</li>
-<li>si carica solo due volte al giorno</li>
-<li>e’ sempre calda</li>
-<li>si puo’ autocostruire con facilita’</li>
-<li>il costo di costruzione e’ decisamente fattibile</li>
-<li>il tipo di calore e’ fantastico</li>
-<li>richiede pochissima manutenzione</li>
-</ul>
-<p>Entrando piu’ nel dettaglio, una stufa ad accumulo (anche detta
-stufa in muratura, o stufa a massa termica) funziona scaldando una
-grande massa opportunamente progettata in modo che sia questa a scaldare
-l’ambiente circostante e non la fiamma diretta come avviene nelle stufe
-classiche. </p>
-<p>Questo tipo di stufe sono comunemente divise in due zone, la camera di combustione e 
-il giro di fumi. Il progetto e’ stato fatto ad occhiometro, ecco un video di due minuti
-della costruzione del tutto! Enjoy:</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="e]]>
-    </summary>
-    
-      <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
-    
-      <category term="concrete" scheme="http://lesion.github.io/tags/concrete/"/>
-    
-      <category term="ita" scheme="http://lesion.github.io/tags/ita/"/>
-    
-      <category term="real-life" scheme="http://lesion.github.io/categories/real-life/"/>
-    
-  </entry>
   
   <entry>
     <title><![CDATA[Start with a new Atmega328 project]]></title>
@@ -134,6 +86,82 @@ Do not forget to add a led on correct pin:</p>
   </entry>
   
   <entry>
+    <title><![CDATA[Enjoy Winter! Costruzione stufa ad accumulo]]></title>
+    <link href="http://lesion.github.io/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/"/>
+    <id>http://lesion.github.io/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/</id>
+    <published>2015-01-09T17:46:30.000Z</published>
+    <updated>2015-01-09T17:29:07.000Z</updated>
+    <content type="html"><![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="external">svariati tentativi</a> di risolvere l’enorme problema del freddo campagnolo, abbiamo trovato una soluzione abbastanza funzionante da valere la pena di essere condivisa.</p>
+<p>Abbiamo costruito una <strong>stufa ad accumulo</strong> un po’ per gioco al principio….</p>
+<p><img src="/images/stufa_studio.png" alt="stufa studio"></p>
+<p>..e ci e’ piaciuta talmente tanto che ne abbiamo costruita 
+subito una piu’ grande in cucina:</p>
+<p><img src="/images/stufa_cucina.png" alt="stufa cucina"></p>
+<p>e ora posso dirlo con certezza, le stufe ad accumulo sono
+una bomba!!</p>
+<h3 id="Cosa_è_una_stufa_ad_accumulo">Cosa è una stufa ad accumulo</h3>
+<p>Detta in breve:</p>
+<ul>
+<li>consuma pochissima legna (mooolto importante)</li>
+<li>si carica solo due volte al giorno</li>
+<li>e’ sempre calda</li>
+<li>si puo’ autocostruire con facilita’</li>
+<li>il costo di costruzione e’ decisamente fattibile</li>
+<li>il tipo di calore e’ fantastico</li>
+<li>richiede pochissima manutenzione</li>
+</ul>
+<p>Entrando piu’ nel dettaglio, una stufa ad accumulo (anche detta
+stufa in muratura, o stufa a massa termica) funziona scaldando una
+grande massa opportunamente progettata in modo che sia questa a scaldare
+l’ambiente circostante e non la fiamma diretta come avviene nelle stufe
+classiche. </p>
+<p>Questo tipo di stufe sono comunemente divise in due zone, la camera di combustione e 
+il giro di fumi. Il progetto e’ stato fatto ad occhiometro, ecco un video di due minuti
+della costruzione del tutto! Enjoy:</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="e]]>
+    </summary>
+    
+      <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
+    
+      <category term="concrete" scheme="http://lesion.github.io/tags/concrete/"/>
+    
+      <category term="ita" scheme="http://lesion.github.io/tags/ita/"/>
+    
+      <category term="real-life" scheme="http://lesion.github.io/categories/real-life/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[drummino]]></title>
+    <link href="http://lesion.github.io/2015/01/09/drummino/"/>
+    <id>http://lesion.github.io/2015/01/09/drummino/</id>
+    <published>2015-01-09T17:46:30.000Z</published>
+    <updated>2015-01-05T15:12:57.000Z</updated>
+    <content type="html"><![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
+<p>I’m not explaining how the things work here, take a look at the <a href="https://github.com/lesion/drummino" target="_blank" rel="external">code</a>!</p>
+<p>This is the result using <a href="http://www.hydrogen-music.org/hcms/" target="_blank" rel="external">hydrogen</a>:</p>
+<p align="center">
+<iframe src="//player.vimeo.com/video/108494278" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
+</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
+<p>I’m not explaining how the things work here, take]]>
+    </summary>
+    
+      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
+    
+      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
+    
+      <category term="midi" scheme="http://lesion.github.io/tags/midi/"/>
+    
+      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Debugging Atmega328 projects with serial]]></title>
     <link href="http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/"/>
     <id>http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/</id>
@@ -181,34 +209,6 @@ so please take care that with the internal oscillator the Serial baudrate has to
       <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
     
       <category term="debug" scheme="http://lesion.github.io/tags/debug/"/>
-    
-      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[drummino]]></title>
-    <link href="http://lesion.github.io/2015/01/09/drummino/"/>
-    <id>http://lesion.github.io/2015/01/09/drummino/</id>
-    <published>2015-01-09T17:46:30.000Z</published>
-    <updated>2015-01-05T15:12:57.000Z</updated>
-    <content type="html"><![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
-<p>I’m not explaining how the things work here, take a look at the <a href="https://github.com/lesion/drummino" target="_blank" rel="external">code</a>!</p>
-<p>This is the result using <a href="http://www.hydrogen-music.org/hcms/" target="_blank" rel="external">hydrogen</a>:</p>
-<p align="center">
-<iframe src="//player.vimeo.com/video/108494278" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
-</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
-<p>I’m not explaining how the things work here, take]]>
-    </summary>
-    
-      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
-    
-      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
-    
-      <category term="midi" scheme="http://lesion.github.io/tags/midi/"/>
     
       <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
     
