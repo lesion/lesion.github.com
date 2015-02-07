@@ -4,7 +4,7 @@
   <subtitle><![CDATA[LowTech]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://lesion.github.io/"/>
-  <updated>2015-02-02T12:08:39.032Z</updated>
+  <updated>2015-02-07T19:27:50.498Z</updated>
   <id>http://lesion.github.io/</id>
   
   <author>
@@ -15,131 +15,27 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Enjoy Winter! Costruzione stufa ad accumulo]]></title>
-    <link href="http://lesion.github.io/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/"/>
-    <id>http://lesion.github.io/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/</id>
-    <published>2015-01-09T17:46:30.000Z</published>
-    <updated>2015-01-09T17:29:07.000Z</updated>
-    <content type="html"><![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="external">svariati tentativi</a> di risolvere l’enorme problema del freddo campagnolo, abbiamo trovato una soluzione abbastanza funzionante da valere la pena di essere condivisa.</p>
-<p>Abbiamo costruito una <strong>stufa ad accumulo</strong> un po’ per gioco al principio….</p>
-<p><img src="/images/stufa_studio.png" alt="stufa studio"></p>
-<p>..e ci e’ piaciuta talmente tanto che ne abbiamo costruita 
-subito una piu’ grande in cucina:</p>
-<p><img src="/images/stufa_cucina.png" alt="stufa cucina"></p>
-<p>e ora posso dirlo con certezza, le stufe ad accumulo sono
-una bomba!!</p>
-<h3 id="Cosa_è_una_stufa_ad_accumulo">Cosa è una stufa ad accumulo</h3>
-<p>Detta in breve:</p>
-<ul>
-<li>consuma pochissima legna (mooolto importante)</li>
-<li>si carica solo due volte al giorno</li>
-<li>e’ sempre calda</li>
-<li>si puo’ autocostruire con facilita’</li>
-<li>il costo di costruzione e’ decisamente fattibile</li>
-<li>il tipo di calore e’ fantastico</li>
-<li>richiede pochissima manutenzione</li>
-</ul>
-<p>Entrando piu’ nel dettaglio, una stufa ad accumulo (anche detta
-stufa in muratura, o stufa a massa termica) funziona scaldando una
-grande massa opportunamente progettata in modo che sia questa a scaldare
-l’ambiente circostante e non la fiamma diretta come avviene nelle stufe
-classiche. </p>
-<p>Questo tipo di stufe sono comunemente divise in due zone, la camera di combustione e 
-il giro di fumi. Il progetto e’ stato fatto ad occhiometro, ecco un video di due minuti
-della costruzione del tutto! Enjoy:</p>
+    <title><![CDATA[test]]></title>
+    <link href="http://lesion.github.io/2015/02/02/test/"/>
+    <id>http://lesion.github.io/2015/02/02/test/</id>
+    <published>2015-02-02T14:21:02.000Z</published>
+    <updated>2015-02-02T14:22:09.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="ciao">ciao</h3>
+<ol>
+<li>ciao</li>
+<li>sdfsd</li>
+</ol>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="e]]>
+    <![CDATA[<h3 id="ciao">ciao</h3>
+<ol>
+<li>ciao</li>
+<li>sdfsd</li>
+</ol>
+]]>
     </summary>
     
-      <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
-    
-      <category term="concrete" scheme="http://lesion.github.io/tags/concrete/"/>
-    
-      <category term="ita" scheme="http://lesion.github.io/tags/ita/"/>
-    
-      <category term="real-life" scheme="http://lesion.github.io/categories/real-life/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[drummino]]></title>
-    <link href="http://lesion.github.io/2015/01/09/drummino/"/>
-    <id>http://lesion.github.io/2015/01/09/drummino/</id>
-    <published>2015-01-09T17:46:30.000Z</published>
-    <updated>2015-01-05T15:12:57.000Z</updated>
-    <content type="html"><![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
-<p>I’m not explaining how the things work here, take a look at the <a href="https://github.com/lesion/drummino" target="_blank" rel="external">code</a>!</p>
-<p>This is the result using <a href="http://www.hydrogen-music.org/hcms/" target="_blank" rel="external">hydrogen</a>:</p>
-<p align="center">
-<iframe src="//player.vimeo.com/video/108494278" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
-</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
-<p>I’m not explaining how the things work here, take]]>
-    </summary>
-    
-      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
-    
-      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
-    
-      <category term="midi" scheme="http://lesion.github.io/tags/midi/"/>
-    
-      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Debugging Atmega328 projects with serial]]></title>
-    <link href="http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/"/>
-    <id>http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/</id>
-    <published>2015-01-09T17:46:30.000Z</published>
-    <updated>2015-01-05T20:27:33.000Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-
-<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
-<footer><strong>Brian Kernighan </strong><cite><a href="http://en.wikiquote.org/wiki/Brian_Kernighan" target="_blank" rel="external">"Unix for Beginners" (1979)</a></cite></footer></blockquote>
-
-
-<p>I know, using Serial.print it’s a dirty way to debug source code,
-but hey, it’s cheap!!
-Usually we need debugging only while we are developing the project
-or to experiment something and we don’t need the power of a <a href="http://store.atmel.com/CBC.aspx?q=c:100112" target="_blank" rel="external">real debugger</a>.</p>
-<p>In small hardware projects we usually need to know value of an input, a temperature, the humidity,
-the remaining battery charge or the value of a capacitive sensor….</p>
-<p>That’s what I needed for <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> and that’s why I wrote <a href="http://github.com/lesion/plottino" target="_blank" rel="external">plottino</a>.</p>
-<p>If we don’t want to use an entire arduino for our final project the problem is now,
-how we can look at Serial data coming from an atmega328 in a computer without the serial port?</p>
-<p>My solution is to use another arduino with its FT232R usb2serial converter:</p>
-<p><img src="/images/serial debug.svg" style="width:100%;"></p>
-<p>As you see we only need to connect the TX pin!</p>
-<p>Note that the atmega328 on the arduino is <strong>not</strong> needed as it may interfere with the serial port!
-Here we only use arduino as usb2serial converter.</p>
-<p>Connecting the arduino to usb port of your computer would enable serial data
-coming from the atmega directly to your emulated serial device (/dev/ttyACM?).</p>
-<p>There isn’t neither a crystal oscillator with two 22uF caps here, because I’m
-using the internal oscillator for the <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> project,
-so please take care that with the internal oscillator the Serial baudrate has to be slow!</p>
-<p>You can try to reach 57600 bps but stay at 9600 bps is preferable.</p>
-<p>If you need more speed, you can try to <a href="http://www.atmel.com/Images/doc8002.pdf" target="_blank" rel="external">calibrate the internal oscillator</a>.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<blockquote>
-
-<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
-<footer><]]>
-    </summary>
-    
-      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
-    
-      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
-    
-      <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
-    
-      <category term="debug" scheme="http://lesion.github.io/tags/debug/"/>
-    
-      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
+      <category term="ciao, dev" scheme="http://lesion.github.io/tags/ciao-dev/"/>
     
   </entry>
   
@@ -209,6 +105,135 @@ Do not forget to add a led on correct pin:</p>
       <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
     
       <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
+    
+      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Enjoy Winter! Costruzione stufa ad accumulo]]></title>
+    <link href="http://lesion.github.io/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/"/>
+    <id>http://lesion.github.io/2015/01/09/enjoy-winter-costruzione-stufa-ad-accumulo/</id>
+    <published>2015-01-09T17:46:30.000Z</published>
+    <updated>2015-01-09T17:29:07.000Z</updated>
+    <content type="html"><![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="external">svariati tentativi</a> di risolvere l’enorme problema del freddo campagnolo, abbiamo trovato una soluzione abbastanza funzionante da valere la pena di essere condivisa.</p>
+<p>Abbiamo costruito una <strong>stufa ad accumulo</strong> un po’ per gioco al principio….</p>
+<p><img src="/images/stufa_studio.png" alt="stufa studio"></p>
+<p>..e ci e’ piaciuta talmente tanto che ne abbiamo costruita 
+subito una piu’ grande in cucina:</p>
+<p><img src="/images/stufa_cucina.png" alt="stufa cucina"></p>
+<p>e ora posso dirlo con certezza, le stufe ad accumulo sono
+una bomba!!</p>
+<h3 id="Cosa_è_una_stufa_ad_accumulo">Cosa è una stufa ad accumulo</h3>
+<p>Detta in breve:</p>
+<ul>
+<li>consuma pochissima legna (mooolto importante)</li>
+<li>si carica solo due volte al giorno</li>
+<li>e’ sempre calda</li>
+<li>si puo’ autocostruire con facilita’</li>
+<li>il costo di costruzione e’ decisamente fattibile</li>
+<li>il tipo di calore e’ fantastico</li>
+<li>richiede pochissima manutenzione</li>
+</ul>
+<p>Entrando piu’ nel dettaglio, una stufa ad accumulo (anche detta
+stufa in muratura, o stufa a massa termica) funziona scaldando una
+grande massa opportunamente progettata in modo che sia questa a scaldare
+l’ambiente circostante e non la fiamma diretta come avviene nelle stufe
+classiche. </p>
+<p>Questo tipo di stufe sono comunemente divise in due zone, la camera di combustione e 
+il giro di fumi. Il progetto e’ stato fatto ad occhiometro, ecco un video di due minuti
+della costruzione del tutto! Enjoy:</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Dopo anni di gelo e <a href="http://galiga.it/2012/il-polpettone-seconda-puntata-la-costruzione-di-un-termoforno/" target="_blank" rel="e]]>
+    </summary>
+    
+      <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
+    
+      <category term="concrete" scheme="http://lesion.github.io/tags/concrete/"/>
+    
+      <category term="ita" scheme="http://lesion.github.io/tags/ita/"/>
+    
+      <category term="real-life" scheme="http://lesion.github.io/categories/real-life/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Debugging Atmega328 projects with serial]]></title>
+    <link href="http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/"/>
+    <id>http://lesion.github.io/2015/01/09/debugging-atmega328-project-with-serial/</id>
+    <published>2015-01-09T17:46:30.000Z</published>
+    <updated>2015-01-05T20:27:33.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+
+<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
+<footer><strong>Brian Kernighan </strong><cite><a href="http://en.wikiquote.org/wiki/Brian_Kernighan" target="_blank" rel="external">"Unix for Beginners" (1979)</a></cite></footer></blockquote>
+
+
+<p>I know, using Serial.print it’s a dirty way to debug source code,
+but hey, it’s cheap!!
+Usually we need debugging only while we are developing the project
+or to experiment something and we don’t need the power of a <a href="http://store.atmel.com/CBC.aspx?q=c:100112" target="_blank" rel="external">real debugger</a>.</p>
+<p>In small hardware projects we usually need to know value of an input, a temperature, the humidity,
+the remaining battery charge or the value of a capacitive sensor….</p>
+<p>That’s what I needed for <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> and that’s why I wrote <a href="http://github.com/lesion/plottino" target="_blank" rel="external">plottino</a>.</p>
+<p>If we don’t want to use an entire arduino for our final project the problem is now,
+how we can look at Serial data coming from an atmega328 in a computer without the serial port?</p>
+<p>My solution is to use another arduino with its FT232R usb2serial converter:</p>
+<p><img src="/images/serial debug.svg" style="width:100%;"></p>
+<p>As you see we only need to connect the TX pin!</p>
+<p>Note that the atmega328 on the arduino is <strong>not</strong> needed as it may interfere with the serial port!
+Here we only use arduino as usb2serial converter.</p>
+<p>Connecting the arduino to usb port of your computer would enable serial data
+coming from the atmega directly to your emulated serial device (/dev/ttyACM?).</p>
+<p>There isn’t neither a crystal oscillator with two 22uF caps here, because I’m
+using the internal oscillator for the <a href="http://github.com/lesion/enlight" target="_blank" rel="external">enlight</a> project,
+so please take care that with the internal oscillator the Serial baudrate has to be slow!</p>
+<p>You can try to reach 57600 bps but stay at 9600 bps is preferable.</p>
+<p>If you need more speed, you can try to <a href="http://www.atmel.com/Images/doc8002.pdf" target="_blank" rel="external">calibrate the internal oscillator</a>.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+
+<p>The most effective debugging tool is still careful thought, coupled with judiciously placed print statements.</p>
+<footer><]]>
+    </summary>
+    
+      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
+    
+      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
+    
+      <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
+    
+      <category term="debug" scheme="http://lesion.github.io/tags/debug/"/>
+    
+      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[drummino]]></title>
+    <link href="http://lesion.github.io/2015/01/09/drummino/"/>
+    <id>http://lesion.github.io/2015/01/09/drummino/</id>
+    <published>2015-01-09T17:46:30.000Z</published>
+    <updated>2015-01-05T15:12:57.000Z</updated>
+    <content type="html"><![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
+<p>I’m not explaining how the things work here, take a look at the <a href="https://github.com/lesion/drummino" target="_blank" rel="external">code</a>!</p>
+<p>This is the result using <a href="http://www.hydrogen-music.org/hcms/" target="_blank" rel="external">hydrogen</a>:</p>
+<p align="center">
+<iframe src="//player.vimeo.com/video/108494278" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
+</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This is an atmega328 based standard MIDI device using capacitive touch sensors!!</p>
+<p>I’m not explaining how the things work here, take]]>
+    </summary>
+    
+      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
+    
+      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
+    
+      <category term="midi" scheme="http://lesion.github.io/tags/midi/"/>
     
       <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
     
