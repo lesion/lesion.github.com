@@ -4,7 +4,7 @@
   <subtitle><![CDATA[LowTech]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://lesion.github.io/"/>
-  <updated>2015-10-26T15:36:44.468Z</updated>
+  <updated>2015-10-26T15:54:00.123Z</updated>
   <id>http://lesion.github.io/</id>
   
   <author>
@@ -13,6 +13,77 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Start with a new Atmega328 project]]></title>
+    <link href="http://lesion.github.io/2015/10/26/atmega_prj/"/>
+    <id>http://lesion.github.io/2015/10/26/atmega_prj/</id>
+    <published>2015-10-26T15:51:20.970Z</published>
+    <updated>2015-10-26T15:51:20.942Z</updated>
+    <content type="html"><![CDATA[<p>Every time I need to create something with the famous <a href="http://en.wikipedia.org/wiki/ATmega328" target="_blank" rel="external">atmega328p</a>
+(the chip on every arduino), I’m doing those follow steps I decided to share.</p>
+<h2 id="Let’s_start">Let’s start</h2>
+<p>To prepare a board for a generic atmega328 project, we need:</p>
+<ul>
+<li>atmega328</li>
+<li>a board</li>
+<li>16 MHz clock crystal</li>
+<li>2 22 pF capacitors</li>
+</ul>
+<p><img src="/images/umidino_bare.svg" alt="umidino_bare"></p>
+<p>This could seems a very minimal installation but the atmega328 could also run
+without an external oscillator, but it’s really better to
+have one (we avoid a lot of issues while programming and debugging).
+I’ll show you some project that doesn’t need the crystal in next article.</p>
+<p>Capacitors are not mandatory neither (with crystal, without crystal there’s not
+need at all for them) but better to follow specifications.
+I’ve some project running without them but only the crystal without any issues.</p>
+<p>Ok…
+The pins we are going to wire the oscillator are the <strong>9</strong> and <strong>10</strong>, while
+caps are between <strong>GND</strong> (pin <strong>8</strong>) and above pins.
+Pretty easy no?</p>
+<p>I’m using the common <a href="http://www.fischl.de/usbasp/" target="_blank" rel="external">usbasp</a> programmer
+to talk with the atmega, you can find it on ebay for 4$ (or less).</p>
+<p>Beginning to play is easy as wiring our usbasp programmer to the chip.
+The pinout for wiring is easy to found on the web, my usbasp
+as the ISP10 pin socket so let’s prepare the female part for
+convenience on our board with the information we found:</p>
+<p><img src="/images/usbaspPinout.jpg" alt="usbaspPinout"></p>
+<p>Looking at <a href="http://arduino.cc/en/Hacking/PinMapping168" target="_blank" rel="external">atmega pinmapping</a>
+we easily found how to connect the ISP header to our atmega:</p>
+<p><img src="/images/umidino_isp10.svg" alt="ISP10 to Atmega"></p>
+<h2 id="Program_atmega328_using_usbasp_programmer">Program atmega328 using usbasp programmer</h2>
+<p>We are going to use the Arduino IDE to talk with t he chip, to achieve
+that we need to explain the IDE how to use the usbasp
+instead of using the default arduino programmer.</p>
+<p>In order to do this, open Arduino IDE and select <strong>USBasp</strong> in
+<strong>Tools &gt; Programmer</strong> menu. If it’s not present, you need to add
+follow lines in <strong>programmers.txt</strong> in your sketchbook/hardware folder
+(close Arduino IDE before doing this):</p>
+<figure class="highlight"><pre><div class="line">usbasp.<span class="variable">name=</span>USBasp</div><div class="line">usbasp.<span class="variable">communication=</span>usb</div><div class="line">usbasp.<span class="variable">protocol=</span>usbasp</div></pre></figure>
+
+<p>Let’s test our setup with the blink sketch (File &gt; Example &gt; Basic &gt; Blink)
+uploading the code through the usbasp programmer (File &gt; Upload with programmer)
+or pressing Shift and click on Upload icon!
+Do not forget to add a led on correct pin:</p>
+<p><img src="/images/atmega_blink_test.svg" alt="atmega_blink_test"></p>
+<p>After upload you should see the led blink once a second.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Every time I need to create something with the famous <a href="http://en.wikipedia.org/wiki/ATmega328" target="_blank" rel="external">atm]]>
+    </summary>
+    
+      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
+    
+      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
+    
+      <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
+    
+      <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
+    
+      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Enjoy Winter! Costruzione stufa ad accumulo]]></title>
@@ -138,77 +209,6 @@ so please take care that with the internal oscillator the Serial baudrate has to
       <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
     
       <category term="debug" scheme="http://lesion.github.io/tags/debug/"/>
-    
-      <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Start with a new Atmega328 project]]></title>
-    <link href="http://lesion.github.io/2015/01/09/atmega_prj/"/>
-    <id>http://lesion.github.io/2015/01/09/atmega_prj/</id>
-    <published>2015-01-09T17:46:30.946Z</published>
-    <updated>2015-01-05T20:29:20.301Z</updated>
-    <content type="html"><![CDATA[<p>Every time I need to create something with the famous <a href="http://en.wikipedia.org/wiki/ATmega328" target="_blank" rel="external">atmega328p</a>
-(the chip on every arduino), I’m doing those follow steps I decided to share.</p>
-<h2 id="Let’s_start">Let’s start</h2>
-<p>To prepare a board for a generic atmega328 project, we need:</p>
-<ul>
-<li>atmega328</li>
-<li>a board</li>
-<li>16 MHz clock crystal</li>
-<li>2 22 pF capacitors</li>
-</ul>
-<p><img src="/images/umidino_bare.svg" alt="umidino_bare"></p>
-<p>This could seems a very minimal installation but the atmega328 could also run
-without an external oscillator, but it’s really better to
-have one (we avoid a lot of issues while programming and debugging).
-I’ll show you some project that doesn’t need the crystal in next article.</p>
-<p>Capacitors are not mandatory neither (with crystal, without crystal there’s not
-need at all for them) but better to follow specifications.
-I’ve some project running without them but only the crystal without any issues.</p>
-<p>Ok…
-The pins we are going to wire the oscillator are the <strong>9</strong> and <strong>10</strong>, while
-caps are between <strong>GND</strong> (pin <strong>8</strong>) and above pins.
-Pretty easy no?</p>
-<p>I’m using the common <a href="http://www.fischl.de/usbasp/" target="_blank" rel="external">usbasp</a> programmer
-to talk with the atmega, you can find it on ebay for 4$ (or less).</p>
-<p>Beginning to play is easy as wiring our usbasp programmer to the chip.
-The pinout for wiring is easy to found on the web, my usbasp
-as the ISP10 pin socket so let’s prepare the female part for
-convenience on our board with the information we found:</p>
-<p><img src="/images/usbaspPinout.jpg" alt="usbaspPinout"></p>
-<p>Looking at <a href="http://arduino.cc/en/Hacking/PinMapping168" target="_blank" rel="external">atmega pinmapping</a>
-we easily found how to connect the ISP header to our atmega:</p>
-<p><img src="/images/umidino_isp10.svg" alt="ISP10 to Atmega"></p>
-<h2 id="Program_atmega328_using_usbasp_programmer">Program atmega328 using usbasp programmer</h2>
-<p>We are going to use the Arduino IDE to talk with t he chip, to achieve
-that we need to explain the IDE how to use the usbasp
-instead of using the default arduino programmer.</p>
-<p>In order to do this, open Arduino IDE and select <strong>USBasp</strong> in
-<strong>Tools &gt; Programmer</strong> menu. If it’s not present, you need to add
-follow lines in <strong>programmers.txt</strong> in your sketchbook/hardware folder
-(close Arduino IDE before doing this):</p>
-<figure class="highlight"><pre><div class="line">usbasp.<span class="variable">name=</span>USBasp</div><div class="line">usbasp.<span class="variable">communication=</span>usb</div><div class="line">usbasp.<span class="variable">protocol=</span>usbasp</div></pre></figure>
-
-<p>Let’s test our setup with the blink sketch (File &gt; Example &gt; Basic &gt; Blink)
-uploading the code through the usbasp programmer (File &gt; Upload with programmer)
-or pressing Shift and click on Upload icon!
-Do not forget to add a led on correct pin:</p>
-<p><img src="/images/atmega_blink_test.svg" alt="atmega_blink_test"></p>
-<p>After upload you should see the led blink once a second.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Every time I need to create something with the famous <a href="http://en.wikipedia.org/wiki/ATmega328" target="_blank" rel="external">atm]]>
-    </summary>
-    
-      <category term="arduino" scheme="http://lesion.github.io/tags/arduino/"/>
-    
-      <category term="atmega" scheme="http://lesion.github.io/tags/atmega/"/>
-    
-      <category term="dev" scheme="http://lesion.github.io/tags/dev/"/>
-    
-      <category term="diy" scheme="http://lesion.github.io/tags/diy/"/>
     
       <category term="electron" scheme="http://lesion.github.io/categories/electron/"/>
     
